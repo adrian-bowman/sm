@@ -1,5 +1,6 @@
 "h.select" <- function(x, y = NA, weights = NA, group = NA, ...) {
 
+  group   <- as.numeric(factor(group))
   data    <- sm.check.data(x, y, weights = weights, group = group, ...)
   x       <- data$x
   y       <- data$y

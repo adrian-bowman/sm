@@ -228,8 +228,7 @@
    opt <- sm.options(list(...))
 
    density <- all(is.na(y))
-   if (density) X <- x
-      else  X <- cbind(x, y)
+   X       <- if (density) x else  X <- cbind(x, y)
 
    if(all(is.na(weights)) | all(weights == 1))
       X <- cbind(X, 1) 

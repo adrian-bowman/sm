@@ -321,19 +321,18 @@
           else              opt$band <- TRUE
        }
     if ((model == "none") && opt$band) opt$band <- FALSE
-    band <- opt$band
+    band  <- opt$band
     ngrid <- opt$ngrid
-    xlim <- opt$xlim
+    xlim  <- opt$xlim
     nboot <- opt$nboot
-    y <- x
+    y     <- x
     if (is.na(opt$test)) {
        if (model == "none") opt$test <- FALSE
           else              opt$test <- TRUE
        }
     if ((model == "none") && opt$test) opt$test <- FALSE
     test <- opt$test
-    if (opt$display %in% "none")
-        band <- FALSE
+    if (opt$display %in% "none") band <- FALSE
     fact <- factor(group)
     fact.levels <- levels(fact)
     nlev <- length(fact.levels)
@@ -344,8 +343,7 @@
     }
     if (length(opt$lty) < nlev) opt$lty <- 1:nlev
     if (length(opt$col) < nlev) opt$col <- 2:(nlev + 1)
-    if (missing(h))
-        h <- h.select(x, y = NA, group = group, ...)
+    if (missing(h)) h <- h.select(x, y = NA, group = group, ...)
     opt$band <- band
     opt$test <- test
     estimate <- matrix(0, ncol = opt$ngrid, nrow = nlev)

@@ -54,7 +54,11 @@ band for equality.
   \code{display="none"}.
 }
 \details{
-see Section 6.2 of the reference below.
+For a general description of  the methods involved, see Section 6.2 of the reference below.
+
+The colours and linetypes of the density estimates are set by \code{col} and \code{lty} which can be passed as additional arguments.  By default these are set to \code{1:nlgroup}, where \code{ngroup} is the number of groups represented in the \code{group} variable.
+
+The additional argument \code{lwd} can also be used to control the linewidth.
 }
 \references{
 Bowman, A.W. and Azzalini, A. (1997). \emph{Applied Smoothing Techniques for
