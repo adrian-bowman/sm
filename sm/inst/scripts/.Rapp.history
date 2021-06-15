@@ -1,0 +1,3 @@
+library(sm)
+sm.script(
+)
