@@ -55,7 +55,8 @@ error information; see the information on the parameters \code{se},
 In the case of density estimation with three variables, \code{col} can be set to a vector whose length matches the number of contours to be drawn (specified by the \code{props} argument).
 }
 \item{col.band}{
-the colour used for the reference band when a \code{model} is specified in regression with one covariate or in density estimation with a single variable.
+the colour used for the reference band when a \code{model} is specified in 
+regression with one covariate.
 Default: \code{col.band="cyan"}.
 }
 \item{col.mesh}{

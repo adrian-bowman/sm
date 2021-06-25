@@ -316,7 +316,6 @@
                             diff(range(x))/4))
     replace.na(opt, eval.points,
         seq(opt$xlim[1], opt$xlim[2], length=opt$ngrid))
-    replace.na(opt, col.band, "cyan")
     if (is.na(opt$band)) {
        if (model == "none") opt$band <- FALSE
           else              opt$band <- TRUE
@@ -417,7 +416,7 @@
         replace.na(opt, ylim, c(0, opt$yht))
         plot(xlim, opt$ylim, xlab = opt$xlab, ylab = opt$ylab, type = "n")
         polygon(c(eval.points, rev(eval.points)), c(upper, rev(lower)),
-            col = opt$col.band, border = 0)
+            col = "cyan", border = 0)
         lines(eval.points, estimate[1, ], lty = opt$lty[1], col = opt$col[1], lwd = opt$lwd)
         lines(eval.points, estimate[2, ], lty = opt$lty[2], col = opt$col[2], lwd = opt$lwd)
         est <- list(p = p, estimate = estimate, eval.points = eval.points, 
