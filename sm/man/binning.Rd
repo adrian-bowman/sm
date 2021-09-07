@@ -1,19 +1,21 @@
 \name{binning}
 \alias{binning}
 \title{
-Construct frequency table from raw data
+Construct frequency table from raw data in 1, 2 or 3 dimensions.
 }
 \description{
-Given a vector or a matrix \code{x}, this function constructs a frequency table
-associated to appropriate intervals covering the range of \code{x}.
+Given a vector, or a matrix with 1, 2 or 3 columns, this function constructs a frequency table
+associated with appropriate intervals covering the range of \code{x}.
 }
 \usage{
 binning(x, y, breaks, nbins)
 }
 \arguments{
-\item{x, y}{
-a vector or a matrix with either one or two columns. 
-If \code{x} is a one-dimentional matrix, this is equivalent to a vector.
+\item{x}{
+a vector or a matrix with either one, two or three columns, containing the original data. 
+}
+\item{y}{
+a vector of data, for example response data, associated with the data in \code{x}.
 }
 \item{breaks}{
 either a vector or a matrix with two columns (depending on the dimension of \code{x}),
@@ -24,11 +26,7 @@ If \code{breaks} is not given, it is computed by dividing the range of \code{x}
 into \code{nbins} intervals for each of the axes.
 }
 \item{nbins}{
-the number of intervals on the \code{x} axis (in the vector case), 
-or a vector of two elements with the number of intervals on each
-axes of \code{x} (in the matrix case).
-If \code{nbins} is not given, a value is computed as \code{round(log(length(x))/log(2)+1)}
-or using a similar expression in the matrix case.
+the number of intervals on each axis. If \code{nbins} is not supplied, a value is computed as \code{round(log(n)/log(2) + 1)}.
 }}
 \value{
 In the vector case, a list is returned containing the following elements:

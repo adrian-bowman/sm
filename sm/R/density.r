@@ -21,34 +21,34 @@
     replace.na(opt, nbins, round((nobs > 500) * 8 * log(nobs) / ndim))
     rawdata <- list(nbins = opt$nbins, x = x, nobs = nobs, ndim = ndim)
     if(opt$nbins > 0) {
-        if (!all(weights == 1) & opt$verbose>0)
-            cat("Warning: weights overwritten by binning\n")
+        if (!all(weights == 1) & (opt$verbose > 0))
+          cat("Warning: weights overwritten by binning.  Set nbins = 0 to avoid this.\n")
         bins    <- binning(x, nbins = opt$nbins)
         x       <- bins$x
         weights <- bins$x.freq
         nx      <- length(bins$x.freq)
         if(!all(is.na(opt$h.weights))) 
-            stop("use of h.weights is incompatible with binning - set nbins = 0")
+          stop("use of h.weights is incompatible with binning.  Set nbins = 0 to avoid this.")
         }
     else
         nx <- nobs
-
+    
     if(opt$positive) {
         replace.na(opt, delta, apply(as.matrix(x), 2, min))
         if ((ndim == 3 ) & (opt$verbose > 0)) 
-           cat("the positive estimation is not available for 3 variables.\n")
+           cat("Positive estimation is not available for 3 variables.\n")
         }   
 
     if(missing(h)){ 
         if(opt$positive) {
             xlog <- log(as.matrix(x) + outer(rep(1, nx), opt$delta))
             if (ndim == 1) xlog <- as.vector(xlog)
-            h <- h.select(xlog, y = NA, weights = weights, ...)
+            h <- h.select(xlog, y = NA, weights = weights, nbins = 0, ...)
             }
         else 
-            h <- h.select(x = x, y = NA, weights = weights, ...)
+            h <- h.select(x = x, y = NA, weights = weights, nbins = 0, ...)
     }
-    
+
     if (opt$panel) {
        pack.rp <- requireNamespace("rpanel",  quietly = TRUE)
        pack.tk <- requireNamespace("tkrplot", quietly = TRUE)
