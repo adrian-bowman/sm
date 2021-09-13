@@ -25,7 +25,7 @@ flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: binning
-### Title: Construct frequency table from raw data
+### Title: Construct frequency table from raw data in 1, 2 or 3 dimensions.
 ### Aliases: binning
 ### Keywords: nonparametric
 
@@ -507,7 +507,10 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 y <- rnorm(100)
 g <- rep(1:2, rep(50,2))
-sm.density.compare(y, g, model="equal")
+sm.density.compare(y, g)
+
+comp <- sm.density.compare(y, g, model = "equal")
+legend("topleft", comp$levels, col = comp$col, lty = comp$lty, lwd = comp$lwd)
 
 
 

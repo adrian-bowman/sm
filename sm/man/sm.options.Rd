@@ -27,7 +27,7 @@ created from two-dimensional data.
 }
 \item{alpha}{
 a value, or a vector of values, lying between 0 and 1, which controls the transparency of the 
-surfaces used to construct an \code{rgl} plot, when this form if display is requested.  In the case of regression with two covariates, a single value for \code{alpha} is used and the defualt is \code{0.7}.  In the case of density estimation with three variables, \code{alpha} should be set to a vector whose length matches the number of contours to be drawn (specified by the \code{props} argument).  In this case the default is \code{seq(1, 0.5, length = length(props))}.
+surfaces used to construct an \code{rgl} plot, when this form if display is requested.  In the case of regression with two covariates, a single value for \code{alpha} is used and the default is \code{0.7}.  In the case of density estimation with three variables, \code{alpha} should be set to a vector whose length matches the number of contours to be drawn (specified by the \code{props} argument).  In this case the default is \code{seq(1, 0.5, length = length(props))}.
 }
 \item{alpha.mesh}{
 a parameter, lying between 0 and 1, which controls the transparency of the 
@@ -83,7 +83,7 @@ apply with three-dimensional data.
 Default: \code{delta=NA}
 }
 \item{describe}{
-  logical flag whiich affects the behaviour of \code{sm.script} and
+  logical flag which affects the behaviour of \code{sm.script} and
   \code{provide.data}. 
   If \code{describe=TRUE} (default), a data documentation file is printed. 
 }
@@ -94,9 +94,9 @@ an integer defining the degree of differencing to be applied in the
 estimation process.
 When this argument is set to 1, the method of Rice,
 based on the squared differences of pairs of neighbouring observations,
-is used.  When the argument is set to 2 (deafult), the method of Gasser, 
+is used.  When the argument is set to 2 (default), the method of Gasser, 
 Sroka and Jennen-Steinmetz, based on differences between each observation 
-and a linear interplotation from its two neighbours, is used.
+and a linear interpolation from its two neighbours, is used.
 }
 \item{display}{
 This argument applies only with one- or two-dimensional data.  The
@@ -112,7 +112,7 @@ while the settings \code{"slice"}, \code{"image"}  and \code{"rgl"}
 will produce slice (contour), image or \code{rgl} plots.
 }
 \item{eval.grid}{
-  logical flag which controls how the options \code{eval.points} are used fow two-dimensional data. If \code{eval.grid=TRUE} (default), evaluation is perfomed at points obtained by the cross-product of the two columns of \code{eval.points}. If \code{eval.grid=FALSE} then evaluation is performed at points with coordinates specified by the coordinates in \code{eval.points}.
+  logical flag which controls how the options \code{eval.points} are used for two-dimensional data. If \code{eval.grid=TRUE} (default), evaluation is performed at points obtained by the cross-product of the two columns of \code{eval.points}. If \code{eval.grid=FALSE} then evaluation is performed at points with coordinates specified by the coordinates in \code{eval.points}.
 }
 \item{eval.points}{
 the points at which the density or the regression curve or surface estimate 
@@ -142,16 +142,17 @@ nearby.  This argument applies only to \code{sm.regression} and
 }
 \item{lty}{
   the line type used to plot the estimate.  This argument applies only
-  when the estimate is displayed as a curve or a countour.
+  when the estimate is displayed as a curve or a contour.
   Default value: 1.
 }
 \item{method}{
   the method used to select smoothing parameters.  In density estimation
   the default is \code{"normal"} which uses a value which is asymptotically
   optimal for the normal distribution.  Other possibilities are \code{"cv"}
-  for cross-validation and \code{"sj"} for the Sheather-Jones method.
+  for cross-validation and, for one-dimensional data only, \code{"sj"} for the Sheather-Jones method.
+  
   In nonparametric regression, the
-  deault is \code{"df"} which selects a smoothing parameters associated
+  default is \code{"df"} which selects a smoothing parameters associated
   with the approximate degrees of freedom given in the \code{df} option.
   Other possibilities are \code{"cv"} for cross-validation and
   \code{"aicc"} for an AIC-based method proposed by Hurvich, Simonoff and
@@ -191,7 +192,7 @@ inside the control panel (see the \code{panel} argument above),  This creates
 a neater screen arrangement.
 }
 \item{pch}{
-  the standard plotting charater identified for data plotting.
+  the standard plotting character identified for data plotting.
   Default value: 1.
 }
 \item{period}{
@@ -255,7 +256,7 @@ with standard error information.  Default value: \code{c(-3, -2, 3, 3)}.
   (h*sd(x[,1]), h*sd(x[,2])).  Other possibilities are \code{"separate"},
   which uses (h1, h2), and \code{"common"} which uses (h, h).  The
   \code{"common"} option may be particularly appropriate when the data
-  have a spatial origin, where distances in each variable havae the same
+  have a spatial origin, where distances in each variable have the same
   meaning.  Note that the \code{"separate"} option is not available
   when \code{"method"} is set to \code{"df"}.
 }

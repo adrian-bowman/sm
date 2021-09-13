@@ -14,7 +14,7 @@
 
     if(!all(is.na(group))) {
        if (!all(weights == 1) & opt$verbose > 0)
-            cat("Warning: weights ignored in sm.density.compare\n")
+          cat("Warning: weights ignored in sm.density.compare\n")
        return(sm.density.compare(x, group, h, model, ...))
        }
 
@@ -22,7 +22,7 @@
     rawdata <- list(nbins = opt$nbins, x = x, nobs = nobs, ndim = ndim)
     if(opt$nbins > 0) {
         if (!all(weights == 1) & (opt$verbose > 0))
-          cat("Warning: weights overwritten by binning.  Set nbins = 0 to avoid this.\n")
+           cat("Warning: weights overwritten by binning.  Set nbins = 0 to avoid this.\n")
         bins    <- binning(x, nbins = opt$nbins)
         x       <- bins$x
         weights <- bins$x.freq
@@ -68,7 +68,7 @@
     if ((model == "none") && opt$band) opt$band <- FALSE
 
     if (ndim == 1) { 
-        if(length(h)!=1) stop("length(h) != 1")
+        if(length(h) != 1) stop("length(h) != 1")
         replace.na(opt, xlab, x.name)
         replace.na(opt, ylab, "Probability density function")
         if (!opt$panel)
@@ -312,10 +312,8 @@
     replace.na(opt, display, "line")
     replace.na(opt, xlab, deparse(substitute(x)))
     replace.na(opt, ylab, "Density")
-    replace.na(opt, xlim, c(min(x) - diff(range(x))/4, max(x) +
-                            diff(range(x))/4))
-    replace.na(opt, eval.points,
-        seq(opt$xlim[1], opt$xlim[2], length=opt$ngrid))
+    replace.na(opt, xlim, c(min(x) - diff(range(x))/4, max(x) + diff(range(x))/4))
+    replace.na(opt, eval.points, seq(opt$xlim[1], opt$xlim[2], length=opt$ngrid))
     replace.na(opt, col.band, "cyan")
     if (is.na(opt$band)) {
        if (model == "none") opt$band <- FALSE
@@ -339,7 +337,7 @@
     nlev <- length(fact.levels)
     ni <- table(fact)
     if (band & (nlev > 2)) {
-        cat("Reference band available to compare two groups only.", "\n")
+        cat("Reference band available to compare two groups only.\n")
         band <- FALSE
     }
     if (length(opt$lty) < nlev) opt$lty <- 1:nlev
@@ -356,14 +354,15 @@
         se[i, ] <- sm$se
     }
     eval.points <- sm$eval.points
-    if (!(opt$display %in% "none" | band)) {
+    if (!(("none" %in% opt$display) | band)) {
         replace.na(opt, yht, 1.1 * max(as.vector(estimate)))
         replace.na(opt, ylim, c(0, opt$yht))
         plot(xlim, opt$ylim, xlab = opt$xlab, ylab = opt$ylab, type = "n")
         for (i in 1:nlev) lines(eval.points, estimate[i, ],
 	          lty = opt$lty[i], col = opt$col[i], lwd = opt$lwd)
     }
-    est <- NULL
+    est <- list(estimate = estimate, eval.points = eval.points, h = h,
+                levels = fact.levels, col = opt$col, lty = opt$lty, lwd = opt$lwd)
     p <- NULL
     if (model == "equal" & test) {
         if (nlev == 2) {
@@ -371,10 +370,9 @@
         }
         else {
             sm.mean <- sm.density(y, h = h, xlim = opt$xlim,
-                ngrid = opt$ngrid, display = "none")$estimate
+                                  ngrid = opt$ngrid, display = "none")$estimate
             ts <- 0
-            for (i in 1:nlev) ts <- ts + ni[i] *
-                sum((estimate[i,] - sm.mean)^2)
+            for (i in 1:nlev) ts <- ts + ni[i] * sum((estimate[i,] - sm.mean)^2)
         }
         p <- 0
         est.star <- matrix(0, ncol = opt$ngrid, nrow = nlev)
@@ -383,7 +381,8 @@
             for (i in 1:nlev) {
                 indi <- sample((1:length(ind)), ni[i])
                 est.star[i, ] <- sm.density(y[ind[indi]], h = h,
-                  ngrid = opt$ngrid, xlim = opt$xlim, display = "none")$estimate
+                                            ngrid = opt$ngrid, xlim = opt$xlim,
+                                            display = "none")$estimate
                 ind <- ind[-indi]
             }
             if (nlev == 2) {
@@ -391,12 +390,11 @@
             }
             else {
                 sm.mean <- sm.density(y, h = h, xlim = opt$xlim,
-                  ngrid = opt$ngrid, display = "none")$estimate
+                                      ngrid = opt$ngrid, display = "none")$estimate
                 ts.star <- 0
-                for (i in 1:nlev) {
+                for (i in 1:nlev)
                   ts.star <- ts.star + ni[i] * sum((est.star[i,] - sm.mean)^2)
-                  }
-                }
+            }
             if (ts.star > ts)
                 p <- p + 1
             if (opt$verbose > 1) {
@@ -405,8 +403,9 @@
             }
         }
         p <- p/nboot
-        cat("\nTest of equal densities:  p-value = ", round(p,3), "\n")
-        est <- list(p = p, estimate = estimate, eval.points = eval.points, h = h)
+        if (opt$verbose > 1) cat("\n")
+        cat("Test of equal densities:  p-value = ", round(p,3), "\n")
+        est$p <- p
     }
     if (model == "equal" & band) {
         av <- (sqrt(estimate[1, ]) + sqrt(estimate[2, ]))/2
@@ -420,8 +419,8 @@
             col = opt$col.band, border = 0)
         lines(eval.points, estimate[1, ], lty = opt$lty[1], col = opt$col[1], lwd = opt$lwd)
         lines(eval.points, estimate[2, ], lty = opt$lty[2], col = opt$col[2], lwd = opt$lwd)
-        est <- list(p = p, estimate = estimate, eval.points = eval.points, 
-                    upper = upper, lower = lower, h = h)
+        est$upper <- upper
+        est$lower <- lower
     }
     invisible(est)
 }

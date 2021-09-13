@@ -141,7 +141,6 @@ sm <- function(x, y, weights, bdeg = 3, pord = 2, h, model, ...
          }
          xrange[[i]]  <- rbind(xrange[[i]], xrng)
          fixed[[i]]   <- rbind(fixed[[i]], vars.inf[[j]]$fixed)
-         print(X[[i]])
          X[[i]]       <- cbind(X[[i]], newvar)
          df.new       <- vars.inf[[j]]$df
          if (is.na(df.new)) df.new <- switch(ndims.new, 6, 12, 18)
@@ -382,10 +381,9 @@ lambda.select <- function(btb, bty, P, df, method = "df") {
           lambda <- 1
           while (lambda.df(lambda, btb, P) >= df) lambda <- lambda * 10
           upper  <- lambda
-          cat("lower, upper:", c(lower, upper), "\n")
+          # cat("lower, upper:", c(lower, upper), "\n")
           lambda.crit <- function(lambda, btb, P, df) {
              lambda.df(lambda, btb, P) - df
-             print(lambda)
           }
           result <- uniroot(lambda.crit, interval = c(lower, upper), btb, P, df)
           # cat("result$root", result$root, "\n")

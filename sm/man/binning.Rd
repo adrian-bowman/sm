@@ -31,13 +31,13 @@ the number of intervals on each axis. If \code{nbins} is not supplied, a value i
 \value{
 In the vector case, a list is returned containing the following elements:
 a vector \code{x} of the midpoints of the bins excluding those with 0 frequecies, 
-its associated matrix \code{x.freq} of frequencies, the coodinateds of the 
+its associated matrix \code{x.freq} of frequencies, the co-ordinates of the 
 \code{midpoints}, the division points, and the complete vector of observed 
 frequencies \code{freq.table} (including the 0 frequencies), and the vector
 \code{breaks} of division points.
 In the matrix case, the returned value is a list with the following 
 elements: a two-dimensional matrix \code{x} with the coordinates of the
-midpoints of the two-dimensional bins excluding those with 0 frequecies, 
+midpoints of the two-dimensional bins excluding those with 0 frequencies, 
 its associated matrix \code{x.freq} of frequencies, the coordinates of the 
 \code{midpoints}, the matrix \code{breaks} of division points, and the observed 
 frequencies \code{freq.table} in full tabular form.

@@ -33,7 +33,7 @@ Type 'q()' to quit R.
 > 
 > ### * </HEADER>
 > library('sm')
-Package 'sm', version 2.2-5.6: type help(sm) for summary information
+Package 'sm', version 2.2-5.7: type help(sm) for summary information
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
@@ -45,7 +45,7 @@ Package 'sm', version 2.2-5.6: type help(sm) for summary information
 > 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: binning
-> ### Title: Construct frequency table from raw data
+> ### Title: Construct frequency table from raw data in 1, 2 or 3 dimensions.
 > ### Aliases: binning
 > ### Keywords: nonparametric
 > 
@@ -89,6 +89,10 @@ Package 'sm', version 2.2-5.6: type help(sm) for summary information
 > h.select(x)
 [1] 0.5047600 0.4687649
 > sm.density(x, method = "cv")
+Warning: 'rgl.init' failed, running with 'rgl.useNULL = TRUE'.
+Warning in fun(libname, pkgname) :
+  couldn't connect to display "/private/tmp/com.apple.launchd.R37hhHUcV3/org.xquartz:0"
+Warning: loading Rplot failed
 > 
 > x <- rnorm(50)
 > y <- x^2 + rnorm(50)
@@ -548,9 +552,11 @@ Test of equality :  h =  0.15    p-value =  0.11
 > 
 > y <- rnorm(100)
 > g <- rep(1:2, rep(50,2))
-> sm.density.compare(y, g, model="equal")
-
+> sm.density.compare(y, g)
+> 
+> comp <- sm.density.compare(y, g, model = "equal")
 Test of equal densities:  p-value =  0.38 
+> legend("topleft", comp$levels, col = comp$col, lty = comp$lty, lwd = comp$lwd)
 > 
 > 
 > 
@@ -1356,7 +1362,7 @@ par(mfrow=c(1,1))
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  3.488 0.501 4.26 0.012 0.014 
+Time elapsed:  3.313 0.438 3.802 0.013 0.015 
 > grDevices::dev.off()
 null device 
           1 

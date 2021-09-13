@@ -22,7 +22,8 @@ Maintainer: ‘Adrian Bowman <adrian.bowman@glasgow.ac.uk>’
 * checking package directory ... OK
 * checking for future file timestamps ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
+* checking top-level files ... NOTE
+Files ‘README.md’ or ‘NEWS.md’ cannot be checked without ‘pandoc’ being installed.
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -60,4 +61,4 @@ Maintainer: ‘Adrian Bowman <adrian.bowman@glasgow.ac.uk>’
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: OK
+Status: 1 NOTE

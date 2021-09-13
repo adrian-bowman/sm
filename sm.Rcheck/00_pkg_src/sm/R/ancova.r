@@ -24,7 +24,7 @@ if (!missing(covar)) {
   if (!is.na(opt$nbins) & opt$nbins!=0)
       stop("if covar is set, nbins must be 0 or NA")
   if (!all(weights == as.integer(rep(1,length(y))))) 
-      stop("if covar is set, weights must not be set")
+      stop("if covar is set, weights must not be set.")
   covar.set <- TRUE
   }
 

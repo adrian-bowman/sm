@@ -18,7 +18,7 @@ to control various features of the plot.
 }
 \arguments{
    \item{x}{a vector, or two-column matrix, of covariate values.}
-   \item{y}{a vector of reponses.}
+   \item{y}{a vector of responses.}
    \item{h}{a vector of length 1 or 2 giving the smoothing parameter.  A normal kernel
             function is used and \code{h} is its standard deviation.}
    \item{design.mat}{the design matrix used to produce \code{y} when these are assumed to be the 
@@ -73,7 +73,7 @@ to control various features of the plot.
    If a reference model has been specified and \code{test} set to
    \code{TRUE}, then the p-value of the test
    is also returned.  When there is only one covariate, the weights associated
-   with different obserations, an estimate of the error standard deviation and 
+   with different observations, an estimate of the error standard deviation and 
    the standard error of the estimate are also returned.  If a reference model 
    has been specified, this standard error refers to the comparison between 
    the estimate and the reference model, and the values defining the reference 

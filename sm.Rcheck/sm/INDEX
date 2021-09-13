@@ -5,7 +5,8 @@ airpc                   These data list the first two principal
                         component scores from the aircraft data, which
                         record six characteristics of aircraft designs
                         throughout the twentieth century
-binning                 Construct frequency table from raw data
+binning                 Construct frequency table from raw data in 1, 2
+                        or 3 dimensions.
 birth                   Low birthweight in babies
 bissell                 Flaws in cloth
 bonions                 Yield-density relationship for Brown Imperial

@@ -1,0 +1,5 @@
+library(sm)
+y <- rnorm(50, mean = 50)
+y1 <- sm.density(y, positive = TRUE)
+y2 <- sm.density(y, positive = TRUE, display = "none")
+all.equal(y1$estimate, y2$estimate)

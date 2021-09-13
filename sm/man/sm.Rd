@@ -36,7 +36,7 @@ functions intended for direct access by the user are:
   \code{sm}, but a few of them make used of the \code{gam} package.
 }
 \details{
-Missing data are allowed; they are simply removed, togeter with
+Missing data are allowed; they are simply removed, together with
 the associated variates from the same case, if any.
 Datasets of arbitrary size can be handled by the current version of  
 \code{sm.density},  \code{sm.regression} and \code{sm.ancova}, using

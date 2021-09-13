@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.24)  15 JUN 2021 18:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.24)  13 SEP 2021 12:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -726,8 +726,8 @@ File: latin1.def 2015/03/17 v1.2c Input encoding file
 
 Writing index file Rd2.idx
 
-(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/Rtmp65YDey/Rd2pdfd534
-8d20ab2/Rd2.aux)
+(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/RtmprLEe43/Rd2pdfc80f
+97820bc/Rd2.aux)
 \openout1 = `Rd2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -783,10 +783,10 @@ LaTeX Info: Redefining \ref on input line 8.
 LaTeX Info: Redefining \pageref on input line 8.
 LaTeX Info: Redefining \nameref on input line 8.
 
-(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/Rtmp65YDey/Rd2pdfd534
-8d20ab2/Rd2.out)
-(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/Rtmp65YDey/Rd2pdfd534
-8d20ab2/Rd2.out)
+(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/RtmprLEe43/Rd2pdfc80f
+97820bc/Rd2.out)
+(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/RtmprLEe43/Rd2pdfc80f
+97820bc/Rd2.out)
 \@outlinefile=\write4
 \openout4 = `Rd2.out'.
 
@@ -808,19 +808,20 @@ LaTeX Font Info:    Try loading font information for TS1+ptm on input line 30.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 33.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 33.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 36.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 36.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 35.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 35.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
-(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/Rtmp65YDey/Rd2pdfd534
-8d20ab2/Rd2.toc [1
+(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/RtmprLEe43/Rd2pdfc80f
+97820bc/Rd2.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 1.
+ [1
 
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
@@ -836,7 +837,7 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [3]
-Overfull \hbox (3.32986pt too wide) in paragraph at lines 125--130
+Overfull \hbox (3.32986pt too wide) in paragraph at lines 122--127
 \T1/ptm/m/n/10 Specif-i-cally, it is used by \T1/zi4/m/n/10 sm.density\T1/ptm/m
 /n/10 , \T1/zi4/m/n/10 sm.regression\T1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.ancova\T
 1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.binomial \T1/ptm/m/n/10 and \T1/zi4/m/n/10 sm.
@@ -844,7 +845,7 @@ poisson\T1/ptm/m/n/10 .
  []
 
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 159.
+(Font)              scaled to size 9.0pt on input line 156.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [4]
@@ -914,7 +915,7 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
-Overfull \hbox (9.36734pt too wide) in paragraph at lines 962--963
+Overfull \hbox (9.36734pt too wide) in paragraph at lines 959--960
 []\T1/ptm/m/n/10 Cobb, G. (1978). The prob-lem of the Nile: con-di-tional so-lu
 -tion to a change-point prob-lem. Biometrika
  []
@@ -937,7 +938,7 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [21]
-Overfull \hbox (12.40799pt too wide) in paragraph at lines 1211--1215
+Overfull \hbox (12.40799pt too wide) in paragraph at lines 1208--1212
 []\T1/ptm/m/n/10 messages are printed on the com-mand win-dow, de-scrib-ing pro
 gress of the op-er-a-tion. If \T1/zi4/m/n/10 describe=TRUE
  []
@@ -951,7 +952,7 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
-Overfull \hbox (57.2504pt too wide) in paragraph at lines 1347--1354
+Overfull \hbox (57.2504pt too wide) in paragraph at lines 1344--1351
 \T1/ptm/m/n/10 by the user are: \T1/zi4/m/n/10 h.select\T1/ptm/m/n/10 , \T1/zi4
 /m/n/10 binning\T1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.ancova\T1/ptm/m/n/10 , \T1/zi
 4/m/n/10 sm.autoregression\T1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.binomial\T1/ptm/m/
@@ -959,7 +960,7 @@ n/10 , \T1/zi4/m/n/10 sm.binomial.bootstrap\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (4.401pt too wide) in paragraph at lines 1347--1354
+Overfull \hbox (4.401pt too wide) in paragraph at lines 1344--1351
 \T1/zi4/m/n/10 sm.poisson\T1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.poisson.bootstrap\T
 1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.options\T1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.rm\T
 1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.script\T1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.spher
@@ -967,7 +968,7 @@ e\T1/ptm/m/n/10 , \T1/zi4/m/n/10 sm.survival\T1/ptm/m/n/10 ,
  []
 
 [24]
-Overfull \hbox (3.448pt too wide) in paragraph at lines 1365--1368
+Overfull \hbox (3.448pt too wide) in paragraph at lines 1362--1365
 []\T1/ptm/m/n/10 R ver-sion >= 3.1.0. Pack-ages \T1/zi4/m/n/10 gam \T1/ptm/m/n/
 10 and \T1/zi4/m/n/10 akima \T1/ptm/m/n/10 are used by some of the scripts laun
 ched via \T1/zi4/m/n/10 sm.script\T1/ptm/m/n/10 ,
@@ -982,14 +983,14 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [28]
-LaTeX Font Info:    Try loading font information for TS1+zi4 on input line 1703
+LaTeX Font Info:    Try loading font information for TS1+zi4 on input line 1699
 .
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
 File: ts1zi4.fd 2016/12/29 TS1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 1703.
+(Font)              scaled to size 9.0pt on input line 1699.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
@@ -999,64 +1000,64 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [30] [31]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [32]
+) [32] [33]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [33] [34] [35]
+) [34] [35]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-)
-Overfull \hbox (8.98898pt too wide) in paragraph at lines 2226--2228
+) [36]
+Overfull \hbox (8.98898pt too wide) in paragraph at lines 2229--2231
 []\T1/ptm/m/n/10 an in-di-ca-tor of whether the re-sponse vari-able is on a \T1
 /zi4/m/n/10 "continuous" \T1/ptm/m/n/10 or \T1/zi4/m/n/10 "binomial"
  []
 
-[36]
-Overfull \hbox (17.3482pt too wide) in paragraph at lines 2265--2269
+
+Overfull \hbox (17.3482pt too wide) in paragraph at lines 2268--2272
 []\T1/ptm/m/n/10 a plot of the curves gen-er-ated by the boot-strap pro-ce-dure
  is pro-duced, un-less the op-tion \T1/zi4/m/n/10 display="none"
  []
 
 
-Overfull \hbox (31.77779pt too wide) in paragraph at lines 2272--2275
+Overfull \hbox (31.77779pt too wide) in paragraph at lines 2275--2278
 []\T1/ptm/m/n/10 Bowman, A.W., Jones, M.C. and Gi-j-bels, I. (1998). Test-ing m
 ono-tonic-ity of re-gres-sion. \T1/ptm/m/it/10 J.Comp.Graph.Stat.
  []
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
+[37] (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [37]
-Overfull \hbox (2.06827pt too wide) in paragraph at lines 2338--2341
+)
+Overfull \hbox (2.06827pt too wide) in paragraph at lines 2341--2344
 []\T1/ptm/m/n/10 a pa-ram-e-ter, ly-ing be-tween 0 and 1, which con-trols the t
 rans-parency
  []
 
 [38]
-Overfull \hbox (69.07866pt too wide) in paragraph at lines 2374--2377
+Overfull \hbox (69.07866pt too wide) in paragraph at lines 2376--2379
 \T1/ptm/m/n/10 an rgl dis-play, for re-gres-sion with two co-vari-ates. De-faul
 t: \T1/zi4/m/n/10 col.palette=topo.colors(12)\T1/ptm/m/n/10 . 
  []
 
 
-Overfull \hbox (17.81868pt too wide) in paragraph at lines 2392--2395
-[]\T1/ptm/m/n/10 logical flag whi-ich af-fects the be-haviour of \T1/zi4/m/n/10
- sm.script \T1/ptm/m/n/10 and \T1/zi4/m/n/10 provide.data\T1/ptm/m/n/10 .
+Overfull \hbox (15.03879pt too wide) in paragraph at lines 2394--2397
+[]\T1/ptm/m/n/10 logical flag which af-fects the be-haviour of \T1/zi4/m/n/10 s
+m.script \T1/ptm/m/n/10 and \T1/zi4/m/n/10 provide.data\T1/ptm/m/n/10 .
  []
 
 
-Overfull \hbox (36.19829pt too wide) in paragraph at lines 2396--2397
+Overfull \hbox (36.19829pt too wide) in paragraph at lines 2398--2399
 []\T1/ptm/m/n/10 approximate degrees-of-freedom of the smooth-ing pa-ram-e-ter 
 used in \T1/zi4/m/n/10 sm.regression\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (27.0286pt too wide) in paragraph at lines 2421--2422
-\T1/ptm/m/n/10 fomed at points ob-tained by the cross-product of the two column
-s of \T1/zi4/m/n/10 eval.points\T1/ptm/m/n/10 .
+Overfull \hbox (30.35855pt too wide) in paragraph at lines 2423--2424
+\T1/ptm/m/n/10 formed at points ob-tained by the cross-product of the two colum
+ns of \T1/zi4/m/n/10 eval.points\T1/ptm/m/n/10 .
  []
 
 [39] [40]
-Overfull \hbox (25.27824pt too wide) in paragraph at lines 2559--2567
+Overfull \hbox (25.27824pt too wide) in paragraph at lines 2562--2570
 \T1/ptm/m/n/10 tings. The de-fault is \T1/zi4/m/n/10 "scaled"\T1/ptm/m/n/10 , w
 hich uses the struc-ture (h*sd(x[,1]), h*sd(x[,2])).
  []
@@ -1064,7 +1065,7 @@ hich uses the struc-ture (h*sd(x[,1]), h*sd(x[,2])).
 [41] (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [42]
-Overfull \hbox (13.04996pt too wide) in paragraph at lines 2690--2691
+Overfull \hbox (13.04996pt too wide) in paragraph at lines 2693--2694
 \T1/ptm/m/n/10 this func-tion are \T1/zi4/m/n/10 display \T1/ptm/m/n/10 (\T1/zi
 4/m/n/10 "eigenvalues"\T1/ptm/m/n/10 , \T1/zi4/m/n/10 "eigenvectors"\T1/ptm/m/n
 /10 ), \T1/zi4/m/n/10 ngrid \T1/ptm/m/n/10 and \T1/zi4/m/n/10 df\T1/ptm/m/n/10 
@@ -1074,7 +1075,7 @@ Overfull \hbox (13.04996pt too wide) in paragraph at lines 2690--2691
 [43] [44] (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
-Overfull \hbox (19.88994pt too wide) in paragraph at lines 2833--2846
+Overfull \hbox (19.88994pt too wide) in paragraph at lines 2836--2849
 \T1/zi4/m/n/10 eval.points\T1/ptm/m/n/10 , \T1/zi4/m/n/10 nbins\T1/ptm/m/n/10 ,
  \T1/zi4/m/n/10 ngrid\T1/ptm/m/n/10 , \T1/zi4/m/n/10 pch\T1/ptm/m/n/10 , \T1/zi
 4/m/n/10 xlab\T1/ptm/m/n/10 , \T1/zi4/m/n/10 ylab\T1/ptm/m/n/10 ; see the doc-u
@@ -1087,14 +1088,14 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [47]
-Overfull \hbox (9.56934pt too wide) in paragraph at lines 3022--3049
+Overfull \hbox (9.56934pt too wide) in paragraph at lines 3025--3052
 \T1/ptm/m/n/10 vant for this func-tion are the fol-low-ing: \T1/zi4/m/n/10 disp
 lay\T1/ptm/m/n/10 , \T1/zi4/m/n/10 hmult\T1/ptm/m/n/10 , \T1/zi4/m/n/10 h.weigh
 ts\T1/ptm/m/n/10 , \T1/zi4/m/n/10 poly.index\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (30.99092pt too wide) in paragraph at lines 3022--3049
+Overfull \hbox (30.99092pt too wide) in paragraph at lines 3025--3052
 \T1/zi4/m/n/10 hull\T1/ptm/m/n/10 , \T1/zi4/m/n/10 panel\T1/ptm/m/n/10 , \T1/zi
 4/m/n/10 panel.plot\T1/ptm/m/n/10 , \T1/zi4/m/n/10 lty\T1/ptm/m/n/10 , \T1/zi4/
 m/n/10 col\T1/ptm/m/n/10 , \T1/zi4/m/n/10 col.band\T1/ptm/m/n/10 , \T1/zi4/m/n/
@@ -1103,7 +1104,7 @@ m/n/10 col\T1/ptm/m/n/10 , \T1/zi4/m/n/10 col.band\T1/ptm/m/n/10 , \T1/zi4/m/n/
  []
 
 [48]
-Overfull \hbox (23.92102pt too wide) in paragraph at lines 3133--3137
+Overfull \hbox (23.92102pt too wide) in paragraph at lines 3136--3140
 [][][]\T1/zi4/m/n/10 hcv[][][]\T1/ptm/m/n/10 , [][]\T1/zi4/m/n/10 sm[][][]\T1/p
 tm/m/n/10 , [][]\T1/zi4/m/n/10 sm.ancova[][][]\T1/ptm/m/n/10 , [][]\T1/zi4/m/n/
 10 sm.binomial[][][]\T1/ptm/m/n/10 , [][]\T1/zi4/m/n/10 sm.poisson[][][]\T1/ptm
@@ -1117,48 +1118,48 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [50]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-)
-Overfull \hbox (25.29898pt too wide) in paragraph at lines 3318--3321
+) [51]
+Overfull \hbox (25.29898pt too wide) in paragraph at lines 3321--3324
 []\T1/ptm/m/n/10 poly.index over-all de-gree of locally-fitted poly-no-mial, as
  used by \T1/zi4/m/n/10 sm.regression\T1/ptm/m/n/10 .
  []
 
-[51] (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
-File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [52]
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
+[52] (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [53]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [54] [55]
+) [54]
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
+) [55]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [56]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [57]
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
-File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [58]
+) [57] [58]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 ) [59]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [60] [61] [62]
+) [60]
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
+) [61]
+Overfull \hbox (15.83963pt too wide) in paragraph at lines 3993--3994
+[]\T1/ptm/m/n/10 This pa-ram-e-ter has no ef-fect when \T1/zi4/m/n/10 model = "
+isotropic" \T1/ptm/m/n/10 or \T1/zi4/m/n/10 model = "stationary"
+ []
+
+[62] [63]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [63]
+ [64]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
-File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-)
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
-File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
-) [64]
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
@@ -1170,29 +1171,35 @@ File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
+) [66]
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
-(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/Rtmp65YDey/Rd2pdfd534
-8d20ab2/Rd2.ind [66] [67
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
+)
+(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/RtmprLEe43/Rd2pdfc80f
+97820bc/Rd2.ind [67] [68
 
-] [68] [69
+] [69] [70
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4321.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4321.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4329.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4329.
 
-(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/Rtmp65YDey/Rd2pdfd534
-8d20ab2/Rd2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4321.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4321.
+(/private/var/folders/n8/g_bt9wl975lgkq_jqf34l2s40000gq/T/RtmprLEe43/Rd2pdfc80f
+97820bc/Rd2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4329.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4329.
 
 Package rerunfilecheck Info: File `Rd2.out' has not changed.
 (rerunfilecheck)             Checksum: 83D7CDDED35593046B74AB79147BEBB4;3167.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4321.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4329.
  ) 
 Here is how much of TeX's memory you used:
- 7482 strings out of 492995
- 111318 string characters out of 6132704
- 184969 words of memory out of 5000000
+ 7483 strings out of 492995
+ 111325 string characters out of 6132704
+ 183969 words of memory out of 5000000
  10229 multiletter control sequences out of 15000+600000
  41364 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1228,10 +1235,10 @@ xlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on Rd2.pdf (69 pages, 267342 bytes).
+Output written on Rd2.pdf (70 pages, 268174 bytes).
 PDF statistics:
- 1620 PDF objects out of 1728 (max. 8388607)
- 1526 compressed objects within 16 object streams
- 568 named destinations out of 1000 (max. 500000)
+ 1626 PDF objects out of 1728 (max. 8388607)
+ 1531 compressed objects within 16 object streams
+ 569 named destinations out of 1000 (max. 500000)
  513 words of extra memory for PDF output out of 10000 (max. 10000000)
 

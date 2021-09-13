@@ -1,0 +1,122 @@
+#         Technical details for the sm library
+
+Installation
+------------
+
+To install using devtools to unload the current version:
+      devtools::install("sm")
+
+To install the old-fashioned way:
+      install.packages("~/research/sm/sm", repos = NULL, type = "source")
+
+To install from GitHub:
+		remotes::install_github("adrian-bowman/sm/sm")
+
+To install from a terminal:
+      cd ~/research/sm
+      R CMD build sm
+      R CMD INSTALL sm_2.2-5.7.tar.gz
+
+Older R code to detach the current package and install a new one:
+      detach(package:sm)
+      unloadNamespace("sm")
+      install.packages("~/research/sm/sm/", repos = NULL, type = "source")
+
+
+Checking
+--------
+
+Update the inst/history, ChangeLog, NEWS.md, NAMESPACE, DESCRIPTION, R/zzz.R (onAttach),
+inst/CITATION and man/sm.Rd (date, version number, function names) files as required.
+
+From the devtools and related packages, use
+      devtools::build("sm")
+      devtools::check("sm")
+      devtools::spell_check("sm")
+
+To check that it can be built under Windows and Rhub
+      devtools::check_win_devel("sm")
+      devtools::check_win_release("sm")
+      devtools::check_win_oldrelease("sm")
+      devtools::check_rhub("sm")
+
+Check package dependencies
+      R CMD build sm (from a terminal)
+      tools::check_packages_in_dir(".", reverse = list())
+      tools::summarize_check_packages_in_dir_results(".")
+
+If data needs to be saved more efficiently, then this should be
+      R CMD build --resave-data sm
+
+The old-fashioned checking procedure, which is also worth using, is invoked from a terminal by
+      rm sm/src/sm.so  (if necessary)
+      rm sm/src/*.o    (if necessary)
+      R CMD build sm
+      R CMD CHECK --as-cran sm_2.2-5.7.tar.gz
+      
+The old-fashioned method of creating a Windows binary version is to upload to
+      win-builder.r-project.org/
+   
+      
+Submission to CRAN
+------------------
+
+To create informative files for the first time:
+      usethis::use_cran_comments()    [I can't get this to work - file copied from rpanel]
+      usethis::use_build_ignore("cran-comments.md")
+      usethis::use_readme_rmd()       [not currently used]
+      
+Update
+      NEWS.md and cran-comments.md
+      
+Submit by
+      devtools::release("sm")
+      
+The old web form is at
+      https://cran.r-project.org/submit.html
+
+
+To explore Fortran issues
+-------------------------
+
+gfortran -arch x86_64 -fno-common -g -O2 -c -fPIC doublePrecision.f90 -o doublePrecision.o
+gfortran -arch x86_64 -fno-common -g -O2 -c -fPIC cov_bin_functions.f90 -o cov_bin_functions.o
+gfortran -arch x86_64 -fno-common -g -O2 -c -fPIC cov_bin_fun.f90 -o cov_bin_fun.o
+cd fnlib
+cat dgamma.f d1mach.f d9lgmc.f dcsevl.f dgamlm.f fdump.f i1mach.f initds.f j4save.f xercnt.f xerhlt.f xermsg.f xerprn.f xersve.f xgetua.f > ../dg.f
+cd ..
+gfortran -arch x86_64 -fno-common -g -O2 -c -fPIC dg.f -o dg.o
+rm covbin.so
+R CMD SHLIB -o covbin.so dg.o cov_bin_functions.o doublePrecision.o cov_bin_fun.o
+
+gfortran -arch x86_64 -fno-common -g -O2 -c -fPIC variogram.f90 -o variogram.o
+
+
+
+cd /Volumes/adrian/research/sm/sm2.2-5.4-not-yet-released
+cd sm/src
+for f in *.f; do base=`basename $f .f`; mv $f $base.f90; done
+cat *.f90 >> variogram.f
+rm *.f90
+mv variogram.f variogram.f90
+Edit out the module definitions and references
+
+cd ../..
+R CMD INSTALL sm
+
+Old notes when Fortran was required
+-----------------------------------
+
+Reinstate the src directory and sm.density.3d in density.r.
+
+useDynLib statement in NAMESPACE has been commented out.
+Is this for the Fortran code?
+
+Remember that the routines.o and sm.so files should be removed
+from sm/src, otherwise the checking process will give a warning.
+
+Remember that the routines.o and sm.so files should be removed
+from before the creation of the tar file.
+
+      rm sm/src/routines.o
+      rm sm/src/sm.so

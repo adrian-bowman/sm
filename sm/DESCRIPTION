@@ -2,7 +2,7 @@ Package: sm
 Type: Package
 Title: Smoothing Methods for Nonparametric Regression and Density Estimation
 Version: 2.2-5.7
-Date: 2021-08-19
+Date: 2021-09-13
 Author:  Adrian Bowman and Adelchi Azzalini. 
          Ported to R by B. D. Ripley <ripley@stats.ox.ac.uk> up to version 2.0,
 	      version 2.1 by Adrian Bowman and Adelchi Azzalini,
@@ -15,4 +15,3 @@ Description: This is software linked to the book
   The Kernel Approach with S-Plus Illustrations' Oxford University Press.
 License: GPL (>= 2)
 LazyData: TRUE
-URL: http://www.stats.gla.ac.uk/~adrian/sm

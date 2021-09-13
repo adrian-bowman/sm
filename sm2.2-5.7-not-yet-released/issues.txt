@@ -1,0 +1,63 @@
+------------------------------------------------------------------------
+                        Immediate changes
+------------------------------------------------------------------------
+
+sm.variogram: in the example, put the coalash standard error calculation in the 
+'don't run' block because of the length of time it takes.
+Also, allow zero distances in binning on the log scale, by adding them to the first bin.
+
+
+------------------------------------------------------------------------
+                Possible changes in future releases
+------------------------------------------------------------------------
+
+sm.discontinuity fails if there are duplicated rows of x in the two covariate case.  This is because sm.sigma produces a matrix with dimension determined by the unique rows of x.
+
+The help file for binning needs edited.  It doesn't refer to y
+or the case of three variables.
+
+Is the 2-d reef st.diff. figure in the book correct?
+Looks like there's too much +/-2 contour.
+
+Can the figures in the `Comparing regression surfaces' paper be reproduced easily?
+
+sm.regression with 2 covariates and rgl display tailors the y axis
+to the estimated surface, not the observed data.
+
+Create an index file?
+
+Would it be easy for sm.regression to return the df parameter
+associated with the returned h?
+
+sm.sigma doesn't produce a ci in the 1-covariate case.
+
+Add periodic smoothing in sm.regression?
+
+Add new functions:
+	sm.survival2
+	sm.surfdiffplot
+
+The spherical data functions could be improved.
+
+The sm.survival function could be improved.  A start has been
+made in research/quantile-regression/smsurvival.r.
+
+What's going on here?
+sm.density(cbind(log(Span), log(Speed)), display = "slice")
+Warning: weights overwritten by binning
+
+
+-----------------------------------------------------------------
+Am using your R package sm, in particular sm.density.compare(),
+in a workshop.  I realized recently that densities may overcome some of
+the arbitrariness of histogram bin widths.
+
+I have a minor suggestion: Is there any chance of adding a line width parameter,
+say lwd=, so that the curves stand out more?
+
+Thank you for making sm available.
+Cordially,
+Giles Crane
+Statistician & R Instructor
+Princeton, NJ
+-----------------------------------------------------------------
