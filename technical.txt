@@ -15,7 +15,7 @@ To install from GitHub:
 To install from a terminal:
       cd ~/research/sm
       R CMD build sm
-      R CMD INSTALL sm_2.2-5.7.tar.gz
+      R CMD INSTALL sm_2.2-6.0.tar.gz
 
 Older R code to detach the current package and install a new one:
       detach(package:sm)

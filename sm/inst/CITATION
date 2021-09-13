@@ -2,7 +2,7 @@ citHeader("To cite the sm package in publications use:")
 
 citEntry(entry       ="manual",
          title       = paste("{R} package \\texttt{sm}:",
-                             "nonparametric smoothing methods (version 2.2-5.7)",  
+                             "nonparametric smoothing methods (version 2.2-6.0)",  
                              sep = " "),
          author      = personList(as.person("A. W. Bowman"), as.person("A. Azzalini")),
          address     = "University of Glasgow, UK and Universit\\`a di Padova, Italia",
@@ -10,7 +10,7 @@ citEntry(entry       ="manual",
          url         = "http://www.stats.gla.ac.uk/~adrian/sm/",
          textVersion =  paste("Bowman, A. W. and Azzalini, A. (2021). ",
                               "R package 'sm': nonparametric smoothing methods",
-	                           " (version 2.2-5.7)", 
+	                           " (version 2.2-6.0)", 
                               " URL http://www.stats.gla.ac.uk/~adrian/sm",
                               sep = "")
 )

@@ -24,7 +24,7 @@
 {
     ## we can't do this in .onLoad
     unlockBinding(".sm.Options", asNamespace("sm"))
-    packageStartupMessage("Package 'sm', version 2.2-5.7: type help(sm) for summary information")
+    packageStartupMessage("Package 'sm', version 2.2-6.0: type help(sm) for summary information")
     invisible()
 }
 
