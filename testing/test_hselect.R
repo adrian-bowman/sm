@@ -2,7 +2,6 @@
 
 library(sm)
 if (reinstall) devtools::install("sm")
-cat("\n")
 
 cat("** Density estimation (1d) ...")
 if (test.prompt) readline(prompt = "  Press [enter] to continue") else cat("\n\n")
@@ -48,4 +47,18 @@ for (structure in c("scaled", "separate", "common")) {
    }
 }
 sm.regression(x, y, df = 8)
+cat("\n")
+
+test_label("Using weights", test.prompt)
+cat("the 'weights' argument currently doesn't work.")
+x <- as.matrix(expand.grid(1:10, 1:10))
+y <- dnorm(x[ , 1], 5, 2) * dnorm(x[ , 2], 5, 2) + rnorm(100, sd = 0.005)
+library(rpanel)
+rp.plot3d(x[,1], y, x[,2])
+
+h.select(x, y)
+sm.regression(x, y)
+
+wts <- dnorm(x[ , 1], 5, 2) * dnorm(x[ , 2], 5, 2)
+h.select(x, y, weights = wts)                                 
 cat("\n")
