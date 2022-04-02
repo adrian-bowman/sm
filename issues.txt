@@ -1,0 +1,11 @@
+--------------------------------------------------------------
+	               Immediate changes to sm
+--------------------------------------------------------------
+
+Run the tests on the sm function.
+
+Default when there is a single variable is to plot?
+
+Check that the sm.variogram functions still work after the changes to the sm additive model function.
+
+Help file for the sm function.

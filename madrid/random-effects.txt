@@ -1,0 +1,62 @@
+Schall paper shows the form of the covariance matrix.
+
+Woodbury matrix identity: see Wikipedia.
+
+Generalised least squares: see wikipedia.
+
+
+y = X b + e
+min (y-Xb)'(y-Xb) = y'y - 2 b'X'y + b'X'Xb
+derivative:  X'Xb = X'y
+
+y0 = Xb + sqrt(l) Db + e
+min (y-Xb)'(y-Xb) + lb'D'Db 
+derivative: (X'X + lD'D)b = X'b
+
+Random effect: 
+y00 = Xb + sqrt(l) D0b + e
+
+(X'X + lD'D)b = X'b
+
+X/sig    U/sig  beta = y/sig
+D rl/sig 0      b    = 0
+0        I/sigr      = 0
+
+This is equivalent to
+X    U          beta    = y
+Drl  0          b       = 0
+0    I sig/sigr         = 0
+
+which we can write as
+Xe  betae  =  ye
+
+This has the solution 
+betae = (Xe'Xe)-1 xe' ye = 
+
+(y - X beta - U b)'(y - X beta - U b) + l beta'Pbeta + s2r b'U'Ub
+y'y + beta' X'X beta + b'U'Ub - 2 beta'X'y + 2 beta'X'Ub - 2 b'U'y + l beta'Pbeta + s2r b'U'Ub
+(X'X + lP) beta - X'y + X'Ub = 0
+beta = inv(X'X + lP) X'(y - Ub)
+(U'U + s2r U'U) b - U'y + U'X beta = 0
+b = inv(U'U + s2r U'U) U'(y - Xbeta)
+
+(y0 - Xe b0)'(y0 - Xe b0) 
+
+Xe'Xe = X' Drl 0    X    U   = X'X + lD'D   X'U
+        U' 0   I    Drl  0     U'X          U'U + Is2r
+                    0    Isr
+                    
+Compare this with the Schall paper.
+X  U     beta   = y
+0  Isr   b        o
+
+X'  0    X  U     =  X'X  X'U
+U'  Isr  0  Isr      U'X  U'U + Is2r
+
+
+p1    <- m1 - M1 %*% p2
+p2    <- m2 - M2 %*% p1
+p1    <- m1 - M1 %*% (m2 - M2 %*% p1)
+p1    <- m1 - M1 %*% m2 + M1 %*% M2 %*% p1
+p1    <- inv(I - M1 %*% M2) %*% (m1 - M1 %*% m2)
+p2    <- inv(I - M2 %*% M1) %*% (m2 - M2 %*% m1)
