@@ -6,7 +6,7 @@ if (reinstall) devtools::install("sm")
 n  <- 50
 y1 <- rnorm(n)
 
-# Weights are no longer required to be integers
+test_label("Weights are no longer required to be integers", test.prompt)
 sm.density(y1)
 sm.density(y1, weights = rep(1, n))
 sm.density(y1, weights = runif(n))

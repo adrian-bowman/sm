@@ -764,6 +764,7 @@ anova.pam <- function(model, terms = 1:length(model$b.ind), method = "QF", weigh
    names(p) <- model$term.labels[terms]
    pmat <- matrix(round(p, 3), ncol = 1, dimnames = list(names(p), "p-value"))
    if (verbose > 0) print(pmat)
+   
    return(invisible(list(p = p, F = Fobs)))
 
 }

@@ -8,9 +8,12 @@ export(binning, britmap, hcv, hnorm, hsj, nise, nmise, nnbr,
        sm.rm, sm.script, sm.sphere, sm.survival, sm.ts.pdf, sm.weight,
        sm.weight2, sm.surface3d, h.select, sm.sigma, sm.sigma2.compare,
        sm.variogram, sm.discontinuity, sm.monotonicity, sm.pca,
+       # The following two lines should be commented out for CRAN release.
        sm, s, plot.pam, anova.pam, summary.pam, predict.pam,
-       fitted.pam, residuals.pam)
+       fitted.pam, residuals.pam
+       )
 
+# These lines should be commented out for CRAN release.
 S3method("plot",      "pam")
 S3method("anova",     "pam")
 S3method("summary",   "pam")
