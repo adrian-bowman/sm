@@ -11,13 +11,13 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       if (missing(model)) model <- "none"
       return(sm.regression(x, y, h, model = model, weights = weights, ...))
    }
-   else if (class(x) != "formula") {
+   else if (!inherits(x, "formula")) {
       x.name <- deparse(substitute(x))
       if (weights.missing) weights <- NA
       if (missing(model)) model <- "none"
       return(sm.density(x, h, model = model, weights = weights, xlab = x.name, ...))
    }
-      
+
    opt <- sm.options(list(...))
    replace.na(opt, display,   "none")
    replace.na(opt, reference, "none")
@@ -25,7 +25,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
    pam.formula    <- x
    data.missing   <- missing(data)
    subset.missing <- missing(subset)
-   
+
    if (!data.missing) {
       mf  <- match.call(expand.dots = FALSE)
       nms <- c("x", "data", "subset", "weights")
@@ -41,7 +41,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
    #-----------------------------------------------------------------
    #      Parse model specification
    #-----------------------------------------------------------------
-   
+
    terms.obj        <- terms(pam.formula, specials = "s")
    vars.inf         <- if (data.missing) eval.parent(attr(terms.obj, "variables"))
                        else eval(attr(terms.obj, "variables"), data)
@@ -58,12 +58,12 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
    formula.linear   <- as.formula(paste("~", rhs.linear))
    names(vars.inf)  <- rownames(involved)
    bricks.type      <- sapply(vars.inf[-response.ind], mode)
-   ind              <- (bricks.type == "numeric") & 
+   ind              <- (bricks.type == "numeric") &
                        sapply(vars.inf[-response.ind], is.factor)
    bricks.type[ind] <- "factor"
    Xlinear          <- vars.inf[-response.ind][bricks.type != "list"]
    names(Xlinear)   <- names(bricks.type)[bricks.type != "list"]
-   
+
    ylab             <- attr(terms.obj, "variables")
    ylab             <- strsplit(deparse(ylab), ",")[[1]][1]
    ylab             <- substr(ylab, 6, nchar(ylab))
@@ -83,14 +83,14 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
    fixed            <- list()
    fac              <- list()
    xmissing         <- FALSE
-   
+
    if (length(terms.smooth) < 1) stop("there must be at least one smooth term.")
-   
+
    if (any(apply(involved, 2, sum) > 3))
       stop("four-way interactions not yet implemented.")
 
    for (i in 1:length(terms.smooth)) {
-   	
+
       inv     <- which(involved[ , terms.smooth[i]] == 1)
       ilinear <- which(bricks.type[names(inv)] == "numeric")
       ifactor <- which(bricks.type[names(inv)] == "factor")
@@ -136,11 +136,11 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
          }
          if (is.matrix(newvar)) {
             nms <- colnames(newvar)
-            if (any(is.null(colnames(newvar)))) 
-                            nms <- paste(vars.inf[[j]]$variables, 
+            if (any(is.null(colnames(newvar))))
+                            nms <- paste(vars.inf[[j]]$variables,
                                          "[", 1:ncol(newvar), "]", sep = "")
          }
-         else 
+         else
             nms <- vars.inf[[j]]$variables
          xlab[[i]]    <- c(xlab[[i]], nms)
          # xlab[[i]]    <- c(xlab[[i]], vars.inf[[j]]$variables)
@@ -153,7 +153,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
          if (length(prd) != ndims.new)
             stop("period does not match the columns of x.")
          period[[i]]  <- c(period[[i]], prd)
-         if (any(!is.na(prd))) {         
+         if (any(!is.na(prd))) {
             for (k in 1:ndims.new)
       	       if (!is.na(prd[k])) newvar[ , k] <- newvar[ , k] %% prd[k]
          }
@@ -190,7 +190,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
          nseg[[i]] <- rep(switch(sum(ndims[[i]]), 100, 17, 7), sum(ndims[[i]]))
       if (any(is.na(X[[i]]))) xmissing  <- TRUE
    }
-   
+
    # Remove observations which have missing data.
    # This may not be necessary as model.frame above may do it already.
    ind.missing <- lapply(X, function(x) apply(x, 1, function(z) any(is.na(z))))
@@ -220,11 +220,11 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
          proc.time()
       }
    }
-   	
+
    #-----------------------------------------------------------------
    #      Construct matrices
    #-----------------------------------------------------------------
-   
+
    if (opt$verbose > 1) cat(" constructing matrices .......... ")
 
    P <- list(length = length(terms.smooth))
@@ -241,12 +241,12 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       for (i in 1:length(X)) X[[i]] <- as.matrix(X[[i]][subset, ])
       B.linear <- as.matrix(B.linear[subset, ])
    }
-   
+
    B <- B.linear
    m <- ncol(B)
 
    for (i in 1:length(terms.smooth)) {
-      mat    <- ps.matrices(X[[i]], xrange[[i]], ndims = ndims[[i]], 
+      mat    <- ps.matrices(X[[i]], xrange[[i]], ndims = ndims[[i]],
                      nseg = nseg[[i]], pord = pord[[i]], period = period[[i]])
    	if (all(is.na(fac[[i]]))) {
          B      <- cbind(B, mat$B)
@@ -270,19 +270,19 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       }
       xrange[[i]] <- mat$xrange
    }
-   
+
    if (opt$verbose > 1) tim <- timing(tim)
 
    #-----------------------------------------------------------------
    #      Construct matrix products
    #-----------------------------------------------------------------
-   
+
    if (opt$verbose > 1) cat(" constructing matrix products ... ")
 
    b.ind <- list(length = length(m))
    for (i in 1:length(terms.smooth))
       b.ind[[i]] <- (cumsum(m)[i] + 1):cumsum(m)[i + 1]
-   
+
    if (weights.missing) {
       btb   <- crossprod(B)
       bty   <- t(B)  %*% y
@@ -303,7 +303,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
    #-----------------------------------------------------------------
    #      Select the smoothing parameters (if required)
    #-----------------------------------------------------------------
-   
+
    if (opt$verbose > 1) cat(" setting smoothness ............. ")
 
    for (i in 1:length(terms.smooth)) {
@@ -314,29 +314,29 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       if (any(is.na(lambda[[i]])))
       	 lambda[[i]] <- lambda.select(btb[b.ind[[i]], b.ind[[i]]], P[[i]], df[[i]])
       }
-   
+
    if (opt$verbose > 1) tim <- timing(tim)
 
    #-----------------------------------------------------------------
    #      Fit the model
    #-----------------------------------------------------------------
-   
+
    if (opt$verbose > 1) cat(" fitting ........................ ")
 
    Pall  <- matrix(0, nrow = ncol(B), ncol = ncol(B))
    for (i in 1:length(terms.smooth))
       Pall[b.ind[[i]], b.ind[[i]]] <- lambda[[i]] * P[[i]]
-   B1       <- solve(btb + Pall) 
+   B1       <- solve(btb + Pall)
    alpha    <- as.vector(B1 %*% bty)
    df.model <- sum(btb * t(B1))
    df.error <- length(y) - sum(btb * (2 * B1 - B1 %*% btb %*% B1))
-   
+
    if (opt$verbose > 1) tim <- timing(tim)
-   
+
    #-----------------------------------------------------------------
    #      Constraints (if requested)
    #-----------------------------------------------------------------
-   
+
    # Force the estimate to pass through fixed points
    # if (length(terms.smooth) == 1 & ndims[[1]] == 1 & all(!is.na(fixed[[1]]))) {
    if (length(terms.smooth) == 1 & ndims[[1]] <= 2 & all(!is.na(fixed[[1]]))) {
@@ -351,10 +351,10 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       fx <- matrix(c(fx), ncol = ndims[[1]])
       A     <- cbind(1, ps.matrices(fx, xrange[[1]], ndims[[1]], nseg[[1]])$B,
                      pord = pord[[1]])
-   	  alpha <- alpha +  B1 %*% t(A) %*% solve(A %*% B1 %*% t(A)) %*% 
+   	  alpha <- alpha +  B1 %*% t(A) %*% solve(A %*% B1 %*% t(A)) %*%
    		                  (fxd[ , ndims[[1]] + 1] - A %*% alpha)
-   }   
-   
+   }
+
    # Increasing function: specific to nseg 17 and so 20 basis fns in each dim.
    if (random.missing && (length(ndims) == 1) && ndims[[1]] == 2 &&
    		 increasing[[1]] && all(nseg[[1]] == 17) && bdeg == 3) {
@@ -377,11 +377,11 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
    	 df.model <- NULL
    	 df.error <- NULL
    }
-   
+
    #-----------------------------------------------------------------
    #      Summaries (and random effects if requested)
    #-----------------------------------------------------------------
-   
+
    if (!random.missing) {
       if (opt$verbose > 1) cat(" estimating random effect ... ")
    	nrnd   <- nlevels(random)
@@ -421,7 +421,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       cov.alpha <- sigma^2 * btb -
       	          sigma^2 * btu %*% U1 %*% t(btu) +
       	          sigma.r^2 * btu %*% t(btu) -
-      	          sigma.r^2 * btu %*% utu %*% U1 %*% t(btu) - 
+      	          sigma.r^2 * btu %*% utu %*% U1 %*% t(btu) -
       	          sigma^2 * btu %*% U1 %*% t(btu) +
       	          sigma^2 * btu %*% U1 %*% utu %*% U1 %*% t(btu) -
       	          sigma.r^2 * btu %*% U1 %*% utu %*% t(btu) +
@@ -440,14 +440,14 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
      tss        <- sum((y - mean(y))^2)
      R.squared  <- 100 * (tss - rss) / tss
    }
-   
+
 	# P[[1]] <- P[[1]] %x% diag(m[2])
 	# P[[2]] <- diag(m[2]) %x% P[[2]]
 
    # If there is only one term, include the mean
    # if (nterms == 1) b.ind[[1]] <- c(1, b.ind[[1]])
 
-   result <- list(fitted = mu, alpha = alpha, m = m, B = B, 
+   result <- list(fitted = mu, alpha = alpha, m = m, B = B,
                   bty = bty, btb = btb, B1 = B1, Pall = Pall, xlabels = xlabels,
                   linear.matrix = B.linear, n = nrow(B),
                   terms.linear = terms.linear, terms.smooth = terms.smooth,
@@ -456,16 +456,16 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
                   y = y, X = X, fac = fac, Xlinear = Xlinear,
                   bricks.type = bricks.type,
                   sigma = sigma, cov.alpha = cov.alpha, b.ind = b.ind,
-                  df = df, df.model = df.model, df.error = df.error, 
+                  df = df, df.model = df.model, df.error = df.error,
                   rss = rss, R.squared = R.squared, xrange = xrange,
-                  nseg = nseg, bdeg = bdeg, pord = pord, period = period, 
+                  nseg = nseg, bdeg = bdeg, pord = pord, period = period,
    					increasing = increasing, pam.formula = pam.formula,
                   formula.linear = formula.linear,
                   involved = involved, nterms = nterms)
    if (!weights.missing) result$weights <- weights
    if (!random.missing)  result$sigma.r <- sigma.r
    class(result) <- "pam"
-   
+
    # if (nterms == 1 & ndims[[1]] <= 2) {
    # 	  if (missing(model)) model <- "none"
    # 	  colnames(result$X[[1]]) <- xlab[[1]]
@@ -476,7 +476,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
    # }
    # else
    if (opt$display != "none") plot(result, ...)
-   
+
    # if (nterms == 1 & ndims[[1]] <= 2) {
       # if (opt$panel) {
          # replace.na(opt, df.max, switch(ndims[[1]], 20, 50, 100))
@@ -495,7 +495,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
             # llambda.df <- c(llambda.df, lambda.df(exp(min(llambda)), btb, Pall))
          # }
          # df.fun <- approxfun(llambda.df, llambda)
-   
+
          # sm.pam.draw <- function(pam.panel) {
          	# plot(pam.panel$model, options = pam.panel$opt)
             # # title(pam.panel$df)
@@ -530,7 +530,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       # else if (opt$display != "none")
          # plot(result, ...)
    # }
-   
+
    invisible(result)
 }
 
@@ -577,7 +577,7 @@ lambda.select <- function(btb, P, df, method = "df") {
        # 	  	f.new   <- lambda.df(lambda, btb, P)
        # 	  }
        # print(c(lower, upper))
-       # # 	  
+       # #
        # # 	  lower <- lambda / 10
        # #  	lambda  <- 0.1
        # #  	f.upper <- df + 1
@@ -595,7 +595,7 @@ lambda.select <- function(btb, P, df, method = "df") {
        #    lambda.crit <- function(lambda, btb, P, df)
        #       lambda.df(lambda, btb, P) - df
        #    cat("entering uniroot ... \n")
-       #    result <- uniroot(lambda.crit, interval = c(lower, upper), 
+       #    result <- uniroot(lambda.crit, interval = c(lower, upper),
        #    									f.lower = f.lower, f.upper = f.upper, btb, P, df)
        #    # cat("result$root", result$root, "\n")
        #    lambda <- result$root
@@ -636,49 +636,49 @@ predict.pam <- function(model, newdata, se.fit = FALSE, verbose = 1, deriv = 0) 
    inrange <- rep(TRUE, nnew)
    for (i in 1:length(model$terms.smooth))
       for (j in 1:ncol(X[[i]]))
-   	     inrange <- inrange & X[[i]][ , j] >= model$xrange[[i]][j, 1] & 
+   	     inrange <- inrange & X[[i]][ , j] >= model$xrange[[i]][j, 1] &
    	                          X[[i]][ , j] <= model$xrange[[i]][j, 2]
    outrange <- which(!inrange)
    if (length(outrange) > 0 & verbose > 0)
       warning("some evaluation points are out of range and have been omitted.")
    nnew <- length(which(inrange))
-   
+
    B.linear <- model.matrix(model$formula.linear, newdata)
    if (nrow(B.linear) == 0) B.linear <- matrix(1, nrow = nnew, ncol = 1)
-   
+
    B    <- matrix(c(B.linear[inrange, ]), ncol = ncol(B.linear))
    for (i in 1:length(model$terms.smooth)) {
-      mat <- ps.matrices(as.matrix(X[[i]][inrange, ]), xrange = model$xrange[[i]], 
+      mat <- ps.matrices(as.matrix(X[[i]][inrange, ]), xrange = model$xrange[[i]],
                          ndims = model$ndims[[i]], nseg = model$nseg[[i]],
       						 pord = model$pord[[i]], period = model$period[[i]])
       B   <- cbind(B, mat$B)
    }
-   
+
    fv          <- rep(NA, nnew)
    fv[inrange] <- c(B %*% model$alpha)
 
    if (model$nterms == 1 & model$ndims[[1]] == 1 & deriv > 0) {
-     mat         <- ps.matrices(as.matrix(X[[1]][inrange, ]), xrange = model$xrange[[1]], 
-                           ndims = model$ndims[[1]], nseg = model$nseg[[1]], bdeg = model$bdeg - deriv, 
+     mat         <- ps.matrices(as.matrix(X[[1]][inrange, ]), xrange = model$xrange[[1]],
+                           ndims = model$ndims[[1]], nseg = model$nseg[[1]], bdeg = model$bdeg - deriv,
                            pord = model$pord[[i]], period = model$period[[1]])
      h           <- (model$xrange[[1]][,2] - model$xrange[[1]][,1]) / mat$nseg
      D           <- diff(diag(length(model$alpha[-1])), differences = deriv)
      fv[inrange] <- model$alpha[1] + c(mat$B %*% D %*% model$alpha[-1]) / (h^deriv)
    }
    # if (model$nterms == 1 & model$ndims[[1]] == 1 & deriv > 0) {
-   #   mat    <- ps.matrices(as.matrix(X[[1]][inrange, ]), xrange = model$xrange[[1]], 
-   #                         ndims = model$ndims[[1]], nseg = model$nseg[[1]], bdeg = model$bdeg - deriv, 
+   #   mat    <- ps.matrices(as.matrix(X[[1]][inrange, ]), xrange = model$xrange[[1]],
+   #                         ndims = model$ndims[[1]], nseg = model$nseg[[1]], bdeg = model$bdeg - deriv,
    #                         period = model$period[[1]])
    #   alpha1 <- diff(model$alpha[-1], differences = deriv)
    #   h      <- model$xrange[[1]][,2] - model$xrange[[1]][,1]
    #   fv[inrange] <- c(mat$B %*% alpha1) / (h / mat$nseg)^deriv
    # }
-   
+
    results     <- list(fit = fv)
-   
+
    if (se.fit)
       results$se.fit = sqrt(diag(B %*% model$cov.alpha %*% t(B)))
-   
+
    return(invisible(results))
 }
 
@@ -702,7 +702,7 @@ anova.pam <- function(model, terms = 1:length(model$b.ind), method = "QF", weigh
    btb       <- model$btb
    B1        <- model$B1
    p         <- vector(length = 0)
-   
+
    for (i in terms) {
 
       ind  <- model$b.ind[[i]]
@@ -723,7 +723,7 @@ anova.pam <- function(model, terms = 1:length(model$b.ind), method = "QF", weigh
       }
       Fobs <- c(model$y %*% model$B %*% A1 %*% t(model$B) %*% model$y) / model$rss
       # Fobs <- sum(model$alpha[ind]^2) / model$rss
-      
+
       if (method == "QF") {
          A2   <- 2 * B1 - B1 %*% btb %*% B1
          A3   <- A1 + Fobs * A2
@@ -756,15 +756,15 @@ anova.pam <- function(model, terms = 1:length(model$b.ind), method = "QF", weigh
       	 # print(c(Fobs, model$df.error, model$df.model, df.m))
          # return(invisible(list(p = pval, Fobs = Fobs, df1 = df1, df2 = df2)))
       }
-      else 
+      else
          stop("method not recognised.")
-         
+
    }
-   
+
    names(p) <- model$term.labels[terms]
    pmat <- matrix(round(p, 3), ncol = 1, dimnames = list(names(p), "p-value"))
    if (verbose > 0) print(pmat)
-   
+
    return(invisible(list(p = p, F = Fobs)))
 
 }
@@ -774,7 +774,7 @@ anova.pam <- function(model, terms = 1:length(model$b.ind), method = "QF", weigh
 #----------------------------------------------------------------------------
 
 summary.pam <- function(model, verbose = 1) {
-	
+
    lcoefs   <- model$alpha[1:model$m[1]]
    se       <- sqrt(model$cov.alpha[cbind(1:model$m[1], 1:model$m[1])])
    d.linear <- data.frame(Estimate = lcoefs, se = se,
@@ -783,7 +783,7 @@ summary.pam <- function(model, verbose = 1) {
       cat("Linear terms:\n")
       print(d.linear)
    }
-   
+
    nterms <- length(model$xlabels)
    adf    <- rep(0,  nterms)
    nvars  <- rep(1,  nterms)
@@ -820,19 +820,19 @@ summary.pam <- function(model, verbose = 1) {
       if (!is.null(model$R.squared))
          cat("\nR-squared :  ", round(model$R.squared, 1), "%", sep = "")
    }
-   
+
    invisible(list(linear = d.linear, smooth = d.smooth))
 }
-   
+
 #----------------------------------------------------------------------------
 #                                plot
 #----------------------------------------------------------------------------
 
-plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo, 
+plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
                    options = list(), ...) {
 
    opt <- if (length(options) > 0) sm.options(options) else sm.options(list(...))
-   
+
    if (length(components) == 1 && components == "linear") {
       smy   <- summary(model)
       upper <- smy$linear[-1, 1] + 2 * smy$linear[-1, 2]
@@ -849,7 +849,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
    }
 
    if (any(components > model$nterms)) stop("some components do not match model terms.")
-   
+
    ngrid <- opt$ngrid
    replace.na(opt, reference,               "none")
    replace.na(opt, nlevels,                 20)
@@ -871,17 +871,17 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
    replace.na(opt, lwd,                     2)
    replace.na(opt, labcex,    1)
    if (opt$reference != "none") opt$se <- TRUE
-   # col.pal <- if (requireNamespace("RColorBrewer", quietly = TRUE)) 
+   # col.pal <- if (requireNamespace("RColorBrewer", quietly = TRUE))
                  # rev(colorRampPalette(RColorBrewer::brewer.pal(9, "BuGn"))(100))
                  # else topo.colors(100)
-   if (requireNamespace("colorspace", quietly = TRUE)) 
+   if (requireNamespace("colorspace", quietly = TRUE))
       col.pal <- if (opt$include.lower.terms) colorspace::heat_hcl(100) else colorspace::diverge_hcl(100)
    else
       col.pal <- topo.colors(100)
    replace.na(opt, col.palette, col.pal)
    replace.na(opt, order, 1:3)
    if (!("vscale" %in% names(list(...)))) opt$vscale <- opt$hscale
-   
+
    if (!is.na(opt$deriv)) {
    	  if (length(components) > 1)
          stop("only one component can be specified when a derivative is requested.")
@@ -889,7 +889,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
       	 stop("the requested derivative is not in the specified model term.")
    	  if (opt$deriv.order == 0) opt$deriv <- NA
    }
-   
+
    # To handle additive terms
    if (is.character(components)) {
       comps      <- as.numeric(unlist(strsplit(components, "+", fixed = TRUE)))
@@ -899,20 +899,20 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
    else
       additive <- FALSE
    # Code not yet followed through
-   
+
    display           <- opt$display
    se                <- opt$se
    ylim              <- opt$ylim
    partial.residuals <- opt$partial.residuals
    ngrid.missing     <- is.na(ngrid)
-   
+
    if (missing(plotinfo)) {
       plotinfo <- list()
       for (i in components) {
-   
+
          x     <- model$X[[i]]
          xdims <- model$xdims[[i]]
-         
+
          if (is.vector(x)) x <- matrix(x, ncol = 1)
          ndim <- sum(model$ndims[[i]])
          if (ngrid.missing) ngrid <- switch(ndim, 100, 20, 15)
@@ -934,10 +934,10 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
             ind.terms <- i
 
          deriv <- if (is.na(opt$deriv)) 0 else opt$deriv.order
-         	
+
          B   <- matrix(nrow = nrow(U), ncol = 0)
          ind <- integer(0)
-         
+
          for (j in ind.terms) {
          	  Uj <- matrix(nrow = nrow(U), ncol = 0)
          	  for (k in 1:length(model$xlabels[[j]])) {
@@ -952,7 +952,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
          	  bdg   <- rep(model$bdeg, sum(model$ndims[[j]]))
          	  bdg[ind.d] <- bdg[ind.d] - deriv
          	  Bj <- ps.matrices(Uj, model$xrange[[j]], model$ndims[[j]], nseg = model$nseg[[j]],
-         	  									bdeg = bdg, pord = model$pord[[i]], 
+         	  									bdeg = bdg, pord = model$pord[[i]],
          	  									period = model$period[[j]], penalty = FALSE)$B
          	  if (!is.na(opt$deriv) & deriv > 0) {
          	  	  h  <- (model$xrange[[j]][ind.d, 2] - model$xrange[[j]][ind.d, 1]) / model$nseg[[j]][ind.d]
@@ -972,26 +972,26 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
             B   <- cbind(B, Bj)
             ind <- c(ind, model$b.ind[[j]])
          }
-                       
+
          if (!all(is.na(model$fac[[i]]))) {
             nlevs <- length(levels(model$fac[[i]]))
             Btemp <- B
             if (nlevs > 1)
                for (j in 2:nlevs) B <- cbind(B, Btemp)
          }
-       
+
          if (opt$include.mean) {
             B   <- cbind(1, B)
             ind <- c(1, ind)
          }
          est <- c(B %*% model$alpha[ind])
          if (ndim > 1) est <- array(est, dim = rep(ngrid, ndim))
-      
+
          mui <- if (is.na(opt$deriv)) c(model$B[ , ind] %*% model$alpha[ind])
                 else rep(NA, length(model$y))
          model.fitted <- model$fitted
 
-         result <- list(u = u, est = est, ndim = ndim, component = i, mui = mui, 
+         result <- list(u = u, est = est, ndim = ndim, component = i, mui = mui,
                         x = x, xdims = xdims, xlab = model$xlab[[i]], ylab = model$ylab,
                         model.fitted = model.fitted)
          if (se) {
@@ -1015,9 +1015,9 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
       est <- plotinfo[[1]]$est
       ngrid <- length(plotinfo[[1]]$u[[1]])
    }
-   
+
    if (display == "none") return(plotinfo)
-   
+
    # One smooth term and one factor: sm.ancova
    if (length(which(model$bricks.type == "list"))   == 1 &&
        length(which(model$bricks.type == "factor")) == 1 &&
@@ -1028,7 +1028,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
       cfs   <- model$alpha[1:model$m[1]]
       est   <- matrix(plotinfo[[1]]$est, nrow = length(est), ncol = nlvls)
       for (i in 1:nlvls)
-         est[ , i] <- est[ , i] + 
+         est[ , i] <- est[ , i] +
               cfs %*% model$linear.matrix[min(which(Xl == lvls[i])), ]
       if (length(model$term.labels) == 3) {
          for (i in 1:nlvls) {
@@ -1059,13 +1059,13 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
       # title("put the levels in different colours?", line = 1, cex.main = 0.7)
    	  return(invisible(plotinfo))
    }
-   
+
    if (!is.na(opt$deriv)) partial.residuals <- FALSE
 
    #------------------------------------------------------------------------
    #                                 1-d terms
    #------------------------------------------------------------------------
-   
+
    ndim1 <- vector(length = 0)
    for (i in 1:length(plotinfo))
    	  if (plotinfo[[i]]$ndim == 1) ndim1 <- c(ndim1, i)
@@ -1142,11 +1142,11 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
    	if ("title" %in% names(opt)) plt <- plt + ggtitle(opt$title)
    	print(plt)
    }
-   
+
    #------------------------------------------------------------------------
    #                                 2-d terms
    #------------------------------------------------------------------------
-   
+
    if (length(ndim1) < length(plotinfo)) {
       if (length(ndim1) > 0)
          ndim2 <- (1:length(plotinfo))[-ndim1]
@@ -1158,7 +1158,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
          # del1  <- u[[1]][2] - u[[1]][1]
          # del2  <- u[[2]][2] - u[[2]][1]
          # ugrid <- as.matrix(expand.grid(u[[1]], u[[2]]))
-         
+
          if (ndim == 2) {
             mask  <- sm.mask(x, cbind(u[[1]], u[[2]]), mask.method = opt$mask.method)
             # mask  <- sm.mask(x[ , opt$order[1:2]], cbind(u[[opt$order[1]]], u[[opt$order[2]]]),
@@ -1174,7 +1174,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
                clr  <- array(c(est1[-ngrid, -ngrid], est1[    -1, -ngrid],
                                est1[-ngrid,     -1], est1[    -1,     -1]),
                              dim = c(ngrid - 1, ngrid - 1, 4))
-               clr  <- apply(clr, 1:2, function(x) 
+               clr  <- apply(clr, 1:2, function(x)
                              if (length(which(is.na(x))) > 1) NA else mean(x, na.rm = TRUE))
                brks <- seq(opt$ylim[1], opt$ylim[2], length = 101)
                clr  <- diverge_hcl(100)[cut(c(clr), brks, labels = FALSE)]
@@ -1184,13 +1184,13 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
             	sdiff <- array(c(reference[-ngrid, -ngrid], reference[    -1, -ngrid],
             						  reference[-ngrid,     -1], reference[    -1,     -1]),
             						dim = c(ngrid - 1, ngrid - 1, 4))
-            	sdiff <- apply(sdiff, 1:2, function(x) 
+            	sdiff <- apply(sdiff, 1:2, function(x)
             		if (length(which(is.na(x))) > 1) NA else mean(x, na.rm = TRUE))
             	sdiff <- matrix(c(sdiff), nrow = ngrid - 1, ncol = ngrid - 1)
             	# if (all(opt$order[1:2] == 2:1)) sdiff <- t(sdiff)
             	se.breaks <- c(-3, -2, 2, 3)
             	col.pal   <- rev(rainbow(length(se.breaks) + 1, start = 0/6, end = 4/6))
-            	se.breaks <- c(min(-3, sdiff, na.rm = TRUE) - 1, se.breaks, 
+            	se.breaks <- c(min(-3, sdiff, na.rm = TRUE) - 1, se.breaks,
             								 max(3, sdiff, na.rm = TRUE) + 1)
             	clr <- col.pal[cut(c(sdiff), se.breaks, labels = FALSE)]
             	clr <- matrix(clr, ngrid - 1, ngrid - 1)
@@ -1198,7 +1198,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
             if (display %in% c("persp", "lines")) {
                if (any(is.na(opt$x1lim))) opt$x1lim <- range(u[[opt$order[1]]])
                if (any(is.na(opt$x2lim))) opt$x2lim <- range(u[[opt$order[2]]])
-               persp(u[[opt$order[1]]], u[[opt$order[2]]], aperm(est * mask, opt$order[1:2]), 
+               persp(u[[opt$order[1]]], u[[opt$order[2]]], aperm(est * mask, opt$order[1:2]),
                      xlab = xlab[opt$order[1]], ylab = xlab[opt$order[2]], zlab = ylab,
                      ticktype = "detailed", col = c(clr),
                      xlim = opt$x1lim, ylim = opt$x2lim, zlim = ylim,
@@ -1213,9 +1213,9 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
             					xlab = xlab[opt$order[1]], ylab = ylab, zlab = xlab[opt$order[2]],
             					xlim = opt$x1lim, ylim = ylim, zlim = opt$x2lim,
             					size = 0.5, col = "black")
-            	surf.ids <- sm.surface3d(cbind(u[[opt$order[1]]], u[[opt$order[2]]]), 
-            													 aperm(est * mask, opt$order[1:2]), opt$scaling, 
-            													 col = clr, col.mesh = opt$col.mesh, 
+            	surf.ids <- sm.surface3d(cbind(u[[opt$order[1]]], u[[opt$order[2]]]),
+            													 aperm(est * mask, opt$order[1:2]), opt$scaling,
+            													 col = clr, col.mesh = opt$col.mesh,
             													 alpha = 0.7, alpha.mesh = 1, lit = FALSE)
             }
             else if (("leaflet" %in% names(opt)) && require(leaflet)) {
@@ -1290,7 +1290,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
    	            dfrm   <- as.list(dfrm)
    	            dfrm$z <- matrix(dfrm$z, nrow = dim(model$y)[1])
    	         }
-   	           
+
                image(intrp$x, intrp$y, t(intrp$z), zlim = ylim, col = opt$col.palette, add = TRUE)
                      # xlab = xlab[opt$order[1]], ylab = xlab[opt$order[2]])
                if (exists("reference")) {
@@ -1328,14 +1328,14 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
                   mtext(ylb, side = 4, line = 1.1, font = 1)
                   layout(1)
                }
-               
+
             }
          }
-         
+
          #------------------------------------------------------------------------
          #                                 3-d terms
          #------------------------------------------------------------------------
-            
+
          else if (ndim == 3) {
 
          	mask  <- sm.mask(x[ , opt$order[1:2]], cbind(u[[opt$order[1]]], u[[opt$order[2]]]),
@@ -1343,7 +1343,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
             mdl   <- list(x = cbind(u[[opt$order[1]]], u[[opt$order[2]]]), z = u[[opt$order[3]]],
                           y = aperm(est, opt$order))
             mdl$y <- array(c(mdl$y) * c(mask), dim = dim(mdl$y))
-            
+
             if (opt$reference == "no effect") {
                rfr           <- aperm(reference, opt$order)
                mdl$reference <- array(c(rfr) * c(mask), dim = dim(rfr))
@@ -1390,7 +1390,7 @@ plot.pam <- function(model, components = 1:length(model$xlabels), plotinfo,
       })
       }
    }
-   
+
    if (length(components) == 1 & display == "image" & ndim == 2) {
       plotinfo         <- plotinfo[[1]]
       plotinfo$ylab    <- ylb
@@ -1442,11 +1442,11 @@ residuals.pam <- function(model) model$y - model$fitted
 #----------------------------------------------------------------------------
 
 sm.mask <- function(x, eval.points, mask.method = "hull") {
-	
+
    ngrid       <- nrow(eval.points)
-   grid.points <- cbind(rep(eval.points[, 1], ngrid), 
+   grid.points <- cbind(rep(eval.points[, 1], ngrid),
                            rep(eval.points[, 2], rep(ngrid, ngrid)))
-                           
+
    if (mask.method == "hull") {
       hull.points <- as.matrix(x[order(x[, 1], x[, 2]), ])
       dh          <- diff(hull.points)
@@ -1481,7 +1481,7 @@ sm.mask <- function(x, eval.points, mask.method = "hull") {
    }
    else
       mask <- matrix(1, ncol = ngrid, nrow = ngrid)
-      
+
    return(invisible(mask))
 }
 
@@ -1510,20 +1510,20 @@ ps.matrices <- function(x, xrange, ndims, nseg, bdeg = 3, pord = 2, period = NA,
 
     # Compute a set of basis functions and a penalty matrix associated with x.
     # An intercept term and the main effects of any interaction terms are removed.
-    
+
     n     <- nrow(x)
     ndimx <- ncol(x)
     if (ndimx > 3) stop("terms with more than three dimensions cannot be used.")
-    
+
     if (missing(nseg)) nseg <- rep(switch(ndimx, 100, 17, 7), ndimx)
     if (length(bdeg) < ndimx) bdeg <- rep(bdeg[1], ndimx)
-    
+
     # Compute B-spline basis
-    
+
     b <- list(length = ndimx)
     m <- vector(length = ndimx)
     for (i in 1:ndimx) {
-       b[[i]] <- bbase(x[,i], xl = xrange[i , 1], xr = xrange[i, 2], nseg = nseg[i], 
+       b[[i]] <- bbase(x[,i], xl = xrange[i , 1], xr = xrange[i, 2], nseg = nseg[i],
                        deg = bdeg[i])
        m[i]   <- ncol(b[[i]])
     }
@@ -1533,9 +1533,9 @@ ps.matrices <- function(x, xrange, ndims, nseg, bdeg = 3, pord = 2, period = NA,
        B <- t(apply(cbind(b[[1]], b[[2]]), 1,
                             function(x) c(x[1:m[1]] %x% x[-(1:m[1])])))
     if (ndimx == 3)
-       B <- t(apply(cbind(B,  b[[3]]), 1, 
+       B <- t(apply(cbind(B,  b[[3]]), 1,
                 function(x) c(x[1:(m[1]*m[2])] %x% x[-(1:(m[1]*m[2]))])))
-    
+
     result <- list(B = B, xrange = xrange, nseg = nseg, bdeg = bdeg, pord = pord)
     if (!penalty) return(invisible(result))
 
@@ -1591,7 +1591,7 @@ ps.matrices <- function(x, xrange, ndims, nseg, bdeg = 3, pord = 2, period = NA,
        pmat <- pmat + diag(m[1]) %x% matrix(1, nrow = m[2], ncol = m[2]) %x% diag(m[3])
        pmat <- pmat + diag(m[1]) %x% diag(m[2]) %x% matrix(1, nrow = m[3], ncol = m[3])
     }
-        
+
     result$P <- pmat
     if (length(ndims) == 1) result$cmat <- cmat
     invisible(result)

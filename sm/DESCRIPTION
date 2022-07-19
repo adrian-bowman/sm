@@ -9,7 +9,7 @@ Author:  Adrian Bowman and Adelchi Azzalini.
 	      version 2.2 by Adrian Bowman.	 	 
 Maintainer: Adrian Bowman <adrian.bowman@glasgow.ac.uk>
 Depends: R (>= 3.1.0)
-Suggests: rgl, misc3d, akima, gam, tkrplot, rpanel (>= 1.1-4), tcltk
+Suggests: rgl, misc3d, interp, gam, tkrplot, rpanel (>= 1.1-4), tcltk
 Description: This is software linked to the book
   'Applied Smoothing Techniques for Data Analysis -
   The Kernel Approach with S-Plus Illustrations' Oxford University Press.
