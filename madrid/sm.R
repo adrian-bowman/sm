@@ -34,6 +34,7 @@ sm <- function(x, y, data, subset, weights, bdeg = 3, h, model,
       mf  <- mf[c(1L, m)]
       mf$drop.unused.levels <- TRUE
       mf[[1L]] <- quote(stats::model.frame)
+      print(exists("dfrm", envir = parent.frame()))
       data <- eval(mf, parent.frame())
    }
    if (!random.missing) random <- as.factor(as.character(data[ , "(random)"]))

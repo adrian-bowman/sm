@@ -32,7 +32,7 @@ plot(sm(Score1 ~ s(Longitude), data = trawl))
 plot(sm(Score1 ~ s(Longitude, df = 4), data = trawl))
 plot(sm(Score1 ~ s(Longitude, df = 10), data = trawl))
 plot(sm(Score1 ~ s(Longitude), se = TRUE, panel = TRUE, data = trawl))
-     plot(sm(Score1 ~ s(Longitude), lambda = 16.6, data = trawl))
+plot(sm(Score1 ~ s(Longitude), lambda = 16.6, data = trawl))
 
 model <- sm(Score1 ~ s(Longitude, lambda = 10000000), data = trawl)
 model$df.model

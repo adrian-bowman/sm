@@ -20,8 +20,9 @@
          df = NA, df.max = NA, method = NA, structure.2d = "scaled", nboot = 100, 
          describe = TRUE, show.script = TRUE, eval.grid = TRUE,
          mask.method = "hull", partial.residuals = TRUE, nlevels = 20,
-         include.mean = NA, include.lower.terms = FALSE, include.lower.reference = FALSE,
+         include.mean = NA, include.terms = "single", include.lower.reference = FALSE,
          transform.response = I, eqscplot = FALSE, order = 1:3,
+         colour.key = NA, z.key = NA,
          deriv = NA, deriv.order = NA)
 
 

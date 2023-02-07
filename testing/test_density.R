@@ -13,6 +13,8 @@ sm.density(y1, weights = runif(n))
 
 sm.density(y1, panel = TRUE)
 
+sm.density(cbind(rnorm(50), rnorm(50)))
+
 sm.density(cbind(rnorm(50), rnorm(50), rnorm(50)))
 
 with(aircraft,

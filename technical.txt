@@ -7,20 +7,21 @@ To install using devtools to unload the current version:
       devtools::install("sm")
 
 To install the old-fashioned way:
-      install.packages("~/research/sm/sm", repos = NULL, type = "source")
+      install.packages("sm", repos = NULL, type = "source")
 
 To install from GitHub:
 		remotes::install_github("adrian-bowman/sm/sm")
 
 To install from a terminal:
-      cd ~/research/sm
+      cd ~/iCloud/research/sm
       R CMD build sm
       R CMD INSTALL sm_2.2-6.0.tar.gz
 
 Older R code to detach the current package and install a new one:
       detach(package:sm)
       unloadNamespace("sm")
-      install.packages("~/research/sm/sm/", repos = NULL, type = "source")
+      # install.packages("~/iCloud/research/sm/sm/", repos = NULL, type = "source")
+      library(sm)
 
 
 Checking
@@ -137,6 +138,6 @@ To establish Github identity from RStudio:
                           user.email = "adrian.bowman@glasgow.ac.uk")
 This isn't generally necessary.
 
-An alternative route to generating a new PAT is to loginn to Github directly:
+An alternative route to generating a new PAT is to login to Github directly:
   Settings > Developer settings > ...
   Copy this immediately.
