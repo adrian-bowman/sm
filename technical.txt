@@ -27,13 +27,19 @@ Older R code to detach the current package and install a new one:
 Checking
 --------
 
+Check out current good practice at: https://r-pkgs.org
+
 Update the inst/history, ChangeLog, NEWS.md, NAMESPACE, DESCRIPTION, R/zzz.R (onAttach),
-inst/CITATION and man/sm.Rd (date, version number, function names) files as required.
+inst/CITATION and man/sm.Rd (version number, function names) files as required.
+
+Run test_all.R
 
 From the devtools and related packages, use
-      devtools::build("sm")
       devtools::check("sm")
+      devtools::check("sm", remote = TRUE, manual = TRUE)
+        - ignore the warnings about lacking attributes?
       devtools::spell_check("sm")
+      urlchecker::url_check("sm")
 
 To check that it can be built under Windows and Rhub
       devtools::check_win_devel("sm")
@@ -43,7 +49,7 @@ To check that it can be built under Windows and Rhub
 
 Check package dependencies
       R CMD build sm (from a terminal)
-      tools::check_packages_in_dir(".", reverse = list())
+      tools::check_packages_in_dir(".", reverse = list())   (back in RStudio)
       tools::summarize_check_packages_in_dir_results(".")
 
 If data needs to be saved more efficiently, then this should be
@@ -71,7 +77,7 @@ Update
       NEWS.md and cran-comments.md
       
 Submit by
-      devtools::release("sm")
+      devtools::submit_cran("sm")
       
 The old web form is at
       https://cran.r-project.org/submit.html

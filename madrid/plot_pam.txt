@@ -1,0 +1,4 @@
+plot.pam causes problems with the CRAN checking of the sm package, because it refers to ggplot2, colorspace and MASS. For personal use of the sm additive model functions, put the plt.pam file back into the SM/R folder.
+
+There is a further problem because of the use of S3 classes (plot, anova, summary, anova) so the code for these functions are here too, as they are not required by the sm package.
+

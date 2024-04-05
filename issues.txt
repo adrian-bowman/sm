@@ -2,8 +2,6 @@
 	                     Changes to sm
 --------------------------------------------------------------
 
-Run the tests on the sm function (not required for CRAN release).
-
 Remove the sm.script() facility?  It doesn't launch a text file, as expected.
 
 Set col.palette to NA by default in sm.options so that the 4D plots can set the palette appropriately to discplay divergence, as in the Clyde paper.  Check that this doesn't cause any difficulties with other lower-dimensional plots.

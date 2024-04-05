@@ -1,10 +1,10 @@
 #     Search for text in all files
 
-target    <- "akima"
+target    <- "residuals"
+diry      <- "sm/testing"
 diry      <- "."
-diry      <- "~/research/sm/testing"
-diry      <- "~/research/sm/sm/man"
-diry      <- "~/research/sm/sm/R"
+diry      <- "sm/man"
+diry      <- "sm/R"
 recursive <- TRUE
 
 files <- list.files(diry, full.names = TRUE, recursive = recursive)

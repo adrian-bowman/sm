@@ -5,10 +5,12 @@ Position  <- cbind(Longitude - 143, Latitude)
 
 sm.ancova(Position[,1], Score1, Zone, model = "parallel", band = FALSE)
 temp <- sm.regression(Position[,1], Score1, model = "no effect", panel = TRUE)
-Position[1,1] <- NA
-Score1[1] <- NA
-sm.ancova(Position[,1], Score1, Zone, model = "parallel", band = FALSE)
-h.select(Position[,1], Score1)
+Pos <- Position
+Sc1 <- Score1
+Pos[1,1] <- NA
+Sc1[1] <- NA
+sm.ancova(Pos[,1], Sc1, Zone, model = "parallel", band = FALSE)
+h.select(Pos[,1], Sc1)
 
 sm.regression(Position[,1], Score1, panel = TRUE)
 sm.regression(Position, Score1, display = "rgl", panel = TRUE)
@@ -44,10 +46,10 @@ sm.surface3d(model2$eval.points, model2$est, model1$scaling, col = "red")
 Zone92 <- (Year == 0 & Zone == 1)
 model <- sm.regression(Position[Zone93, 2:1], Score1[Zone93], 
      h= c(0.1, 0.1), display = "rgl", zlab="Longitude - 143", ylim = c(-1, 2),
-     col = c("green", "black"), col.points = "red", ngrid = 50, alpha = c(1, 0))
+     col = "green", col.points = "red", ngrid = 50, alpha = c(1, 0))
 sm.regression(Position[Zone92, 2:1], Score1[Zone92], scaling = model$scaling,
      display = "rgl", zlab="Longitude - 143", add = TRUE,
-     h= c(0.1, 0.1), col = c("red", "black"), ngrid = 50, alpha = c(1, 0))
+     h= c(0.1, 0.1), col = "red", ngrid = 50, alpha = c(1, 0))
 
 n <- 1000
 x <- cbind(rnorm(n), rnorm(n))
@@ -65,7 +67,7 @@ x     <- cbind(Temp, Wind)
 Ozone <- Ozone^(1/3)
 
 h     <- c(7.1, 2.7)
-h <- h.select(x, Ozone)
+h     <- h.select(x, Ozone)
 
 model <- sm.regression(x[!group,], Ozone[!group], display = "rgl")
 sm.regression(x[group,], Ozone[group], display = "persp", theta = -90)
@@ -90,4 +92,4 @@ y <- cbind(rnorm(n), rnorm(n), rnorm(n))
 
 sm.density(y, display = "rgl", panel = TRUE)
 
-while (rgl::rgl.cur() > 0) rgl::rgl.close()
+while (rgl::cur3d() > 0) rgl::close3d()
